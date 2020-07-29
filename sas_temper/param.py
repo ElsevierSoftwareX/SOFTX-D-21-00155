@@ -1,9 +1,8 @@
 r"""
 sas_temper
 
-param.py - a model parameter used in the machine learning and
-			job farming engine for the simulated annlealing to be
-			developed as part of the Expert LDRD.  The parameters are
+param.py - model parameters for the simulated annlealing to be
+			performed by sas_temper.  The parameters are
 			taken from a configuration file provided in the defined
 			and parsed using code from this project.  After reading 
 			in a configuration file in the format defined as part 
