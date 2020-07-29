@@ -1,0 +1,10 @@
+test: tox.ini .tox/
+	tox
+	tox -e example
+	
+.tox/: setup.py
+	rm -rf .tox/
+	
+clean: 
+	rm -rf .tox/
+	
