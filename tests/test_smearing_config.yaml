@@ -1,0 +1,29 @@
+file: 
+    name: 29983_merged.txt
+    qmin: 0.01
+    qmax: 0.30
+    
+output_files: test_sphere1
+
+sa_parameters: 
+    temperatures: 100
+    temperature_rate: 0.90
+    parameter_rate: 0.95
+    iterations: 1000
+    models_to_generate: 20
+
+model:
+    name: sphere
+    category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        fixed: [8.00]
+    sld_solvent: 
+        fixed: [-0.56]
+    radius: 
+        fixed: [100.0] 
+    
+
