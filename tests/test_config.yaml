@@ -1,0 +1,36 @@
+file: 
+    name: sphere_nz_unc.txt
+    qmin: 0.01
+    qmax: 0.35
+    
+output_files: test_sphere
+
+sa_parameters: 
+    temperatures: 100
+    temperature_rate: 0.90
+    parameter_rate: 0.95
+    iterations: 1000
+    models_to_generate: 10
+
+model:
+    name: sphere
+    category: shape-sphere
+    scale:
+        linear: [0.001, 10.00]
+    background: 
+        linear: [0.000, 0.010]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+        #coupled: [sld]
+    radius: 
+        linear: [50.0, 300.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction: 
+            linear: [0.0, 0.50]
+    
+
