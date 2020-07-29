@@ -1,0 +1,33 @@
+file: 
+    name: 29983_merged.txt
+    qmin: 0.01
+    qmax: 0.30
+    
+output_files: test_fuzzy
+
+sa_parameters: 
+    temperatures: 100
+    temperature_rate: 0.90
+    parameter_rate: 0.95
+    iterations: 1000
+    models_to_generate: 3
+
+model:
+    name: fuzzy_sphere
+    category: shape-sphere
+    scale:
+        fixed: [1.00]
+    background: 
+        linear: [0.000, 0.10]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        fixed: [6.38]
+    radius: 
+        linear: [50.0, 300.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    fuzziness:
+        linear: [0.01, 1.0]
+    
+
