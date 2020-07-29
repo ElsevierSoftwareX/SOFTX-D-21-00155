@@ -1,0 +1,4 @@
+git+https://github.com/SASView/sasmodels.git@v0.96#egg=sasmodels-0.94
+numpy==1.19.0
+scipy==1.5.2
+PyYAML==5.3.1
