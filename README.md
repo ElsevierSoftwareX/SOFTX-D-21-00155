@@ -7,4 +7,4 @@ The program is written in python3.
  
 The code began as sa_fitter, which was developed as part of ORNL LDRD project 8235.
      
-pip install --upgrade git+https://code.ornl.gov/sas_temper/sas_temper.git
+pip install --upgrade git+https://code.ornl.gov/wt3/sas_temper.git
