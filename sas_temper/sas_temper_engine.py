@@ -81,7 +81,7 @@ def sa_engine(fconf, modconf, d):
 		model_usm = sas_calc.calc_profile_usm(d,f) 
 		model = sas_calc.calc_profile(d,f,model_usm)
 	
-	f.chisq = calc.chisq(f,d,model)
+	f.chisq = sas_calc.chisq(f,d,model)
 	fbest.chisq = f.chisq
 	cur.chisq = f.chisq
 	bchi = f.chisq
