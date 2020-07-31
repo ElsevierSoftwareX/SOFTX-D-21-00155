@@ -24,23 +24,23 @@ import numpy as np
 import math as m
 
 class Polydispersity(object):
-	def __init__(self, name, kind, min, max):
-		self.name = str(name)		# string:  the name of the parameter
-		
-		if kind in ["SchulzDispersion","GaussianDispersion","LogNormalDispersion","RectangleDispersion"]:
-			self.kind = str(kind)		
-		else:
-			# throw an error
-			err_message = "The polydispersity distribution type " + str(kind) + " is not valid"
-			raise Exception(err_message)
-		
-		self.min = np.float64(min)			# the minimum value
-		self.max = np.float64(max)			# the maximum value
-		self.val = 0.5*(self.min + self.max)
-		self.unc = 0.0
-		
-		#print("")
-		#outbuf = "Created a polydispersity parameter " + self.kind + " with a range of widths " + str(self.min) + " to " + str(self.max)
+    def __init__(self, name, kind, min, max):
+        self.name = str(name)        # string:  the name of the parameter
+        
+        if kind in ["SchulzDispersion","GaussianDispersion","LogNormalDispersion","RectangleDispersion"]:
+            self.kind = str(kind)        
+        else:
+            # throw an error
+            err_message = "The polydispersity distribution type " + str(kind) + " is not valid"
+            raise Exception(err_message)
+        
+        self.min = np.float64(min)            # the minimum value
+        self.max = np.float64(max)            # the maximum value
+        self.val = 0.5*(self.min + self.max)
+        self.unc = 0.0
+        
+        #print("")
+        #outbuf = "Created a polydispersity parameter " + self.kind + " with a range of widths " + str(self.min) + " to " + str(self.max)
         #print(outbuf)
-		#print ("")
-	
+        #print ("")
+    
