@@ -213,14 +213,21 @@ def outputSetRes(conf, res):
                     outbuf = "Plot pair " + str(i) + " and " + str(j)
                     print(outbuf)
                     fig = plt.figure(figsize = [4,4], dpi=100)
+                    print("created the fig")
                     grph = fig.add_subplot(1,1,1)
+                    print("added the subplot")
                     grph.set_autoscale_on(True)
+                    print("turned on autoscale")
                     grph.plot(vals[i],vals[j],'bo')
+                    print("made the call to plot()")
                     grph.set_title(str(names[j])+" vs. "+str(names[i]))
+                    print("set the title of the plot") 
                     
                     oname = str(conf.output)+"_"+str(names[j])+"_"+str(names[i])+".png"
                     fig.savefig(oname,format="png")
+                    print("saved the fig")
                     plt.close(fig)
+                    print("closed the fig")
                     
     # output histograms of the non-fixed parameters
     for i in range(0,len(names)):
