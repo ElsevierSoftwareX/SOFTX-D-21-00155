@@ -13,7 +13,7 @@ Oak Ridge National Laboratory, 2020
 
 """
 
-import sa_fitter.param as param
+import sas_temper.param as param
 
 class StructureFactor(object):
 	def __init__(self, type, params):
