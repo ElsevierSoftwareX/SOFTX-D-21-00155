@@ -206,6 +206,7 @@ def outputSetRes(conf, res):
     # this outputs a set of graphs showing the relationships between all pairs of variables
     # these are simple scatter plots of one variable plotted against the other, but it should be useful
     print("Starting the first loop of plots")
+    '''
     for i in range(0,(len(names)-1)):
         if varkinds[i] not in ["fixed"]:
             for j in range((i+1),len(names)):
@@ -228,7 +229,7 @@ def outputSetRes(conf, res):
                     print("saved the fig")
                     plt.close(fig)
                     print("closed the fig")
-                    
+    '''                
     # output histograms of the non-fixed parameters
     for i in range(0,len(names)):
         if varkinds[i] not in ["fixed"]:
