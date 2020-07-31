@@ -160,8 +160,6 @@ def outputSetRes(conf, res):
     for i in range(0,parms):
         ave[i] = np.average(vals[i])
         std[i] = np.std(vals[i])
-        if varkinds[i] in ["fixed"]:
-            std[i] = 1.0
     cor = np.corrcoef(vals,y=None,rowvar=True)
     #this gets rid of junk values when parameters are fixed
     for i in range(0,parms):
