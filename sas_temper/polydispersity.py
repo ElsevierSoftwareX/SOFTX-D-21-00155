@@ -39,7 +39,8 @@ class Polydispersity(object):
 		self.val = 0.5*(self.min + self.max)
 		self.unc = 0.0
 		
-		#print ""
-		#print "Created a polydispersity parameter " + self.kind + " with a range of widths " + str(self.min) + " to " + str(self.max)
-		#print ""
+		#print("")
+		#outbuf = "Created a polydispersity parameter " + self.kind + " with a range of widths " + str(self.min) + " to " + str(self.max)
+        #print(outbuf)
+		#print ("")
 	
