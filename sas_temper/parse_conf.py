@@ -33,6 +33,8 @@ def parse_config(name):
 	
 	sasTemperConf = config.SAConfiguration(sa_parameters)
 	
+    model_name = None
+    model_category = None
 	model_params = []
 	s_of_q = None
 	s_of_q_params = []
