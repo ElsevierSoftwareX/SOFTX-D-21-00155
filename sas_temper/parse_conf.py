@@ -2,9 +2,9 @@ r"""
 sas_temper
 
 parse_conf.py:  code for parsing the YAML configuration file.  
-                Read in a YAML 1.2 compliant configuration file
-                for the fitting engine that is built on simulated 
-                annealing.  
+				Read in a YAML 1.2 compliant configuration file
+				for the fitting engine that is built on simulated 
+				annealing.  
 
 Oak Ridge National Laboratory, 2020
 
@@ -33,8 +33,8 @@ def parse_config(name):
 	
 	sasTemperConf = config.SAConfiguration(sa_parameters)
 	
-    model_name = None
-    model_category = None
+	model_name = None
+	model_category = None
 	model_params = []
 	s_of_q = None
 	s_of_q_params = []
@@ -43,7 +43,7 @@ def parse_config(name):
 		if params not in ["name","category","Category","Structure_Factor"]:
 			txt1 = str(params)
 			#print ""
-			#print "     parameter name:  " + txt1
+			#print "	 parameter name:  " + txt1
 			
 			coupled_name=None
 			pd_name=None
@@ -57,23 +57,23 @@ def parse_config(name):
 				if mod in ["fixed", "linear", "log", "integer"]:
 					var_kind = txt2
 					if txt2 in ["linear", "log", "integer"]:
-						#print "          type: " + txt2 + "; value: " + str(conf_params["model"][txt1][txt2][0])
+						#print "		  type: " + txt2 + "; value: " + str(conf_params["model"][txt1][txt2][0])
 						min_val = float(conf_params["model"][txt1][txt2][0])
 						max_val = float(conf_params["model"][txt1][txt2][1])
 					else:
-						#print "          type: " + txt2 + "; range: " + str(conf_params["model"][txt1][txt2][0]) + " " + str(conf_params["model"][txt1][txt2][1])
+						#print "		  type: " + txt2 + "; range: " + str(conf_params["model"][txt1][txt2][0]) + " " + str(conf_params["model"][txt1][txt2][1])
 						min_val = float(conf_params["model"][txt1][txt2][0])
 						max_val = float(conf_params["model"][txt1][txt2][0])
 				elif mod == "coupled":
 					coupled_name = str(conf_params["model"][txt1][txt2][0])
-					#print "          coupled to: " + str(conf_params["model"][txt1][txt2][0])
+					#print "		  coupled to: " + str(conf_params["model"][txt1][txt2][0])
 				elif mod == "polydispersity":
 					for k, poly in enumerate(conf_params["model"][txt1][txt2]):
 						txt3 = str(poly)
 						pd_name = txt3
 						pd_minval = float(conf_params["model"][txt1][txt2][txt3][0])
 						pd_maxval = float (conf_params["model"][txt1][txt2][txt3][1])
-						#print "          polydispersity type: " + txt3 + "; range: " + str(conf_params["model"][txt1][txt2][txt3][0]) + " " + str(conf_params["model"][txt1][txt2][txt3][1])
+						#print "		  polydispersity type: " + txt3 + "; range: " + str(conf_params["model"][txt1][txt2][txt3][0]) + " " + str(conf_params["model"][txt1][txt2][txt3][1])
 						
 			#now, we create a parameter
 			if coupled_name is None:
