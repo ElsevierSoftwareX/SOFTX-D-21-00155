@@ -16,7 +16,7 @@ import copy
 import sas_temper.modelconfig as modelconfig
 import sas_temper.sas_temper_config as config
 import sas_temper.sas_data as sas_data
-import sas_temper.sas_calc as calc
+import sas_temper.sas_calc as sas_calc
 
 # this handles the set generation
 # fconf is the set of configuration parameters for the fitting itself
@@ -76,10 +76,10 @@ def sa_engine(fconf, modconf, d):
 	cur = copy.deepcopy(f)
 	#calculate the profiles
 	if d.dx is None:
-		model = calc.calc_profile_usm(d,f)
+		model = sas_calc.calc_profile_usm(d,f)
 	else:
-		model_usm = calc.calc_profile_usm(d,f) 
-		model = calc.calc_profile(d,f,model_usm)
+		model_usm = sas_calc.calc_profile_usm(d,f) 
+		model = sas_calc.calc_profile(d,f,model_usm)
 	
 	f.chisq = calc.chisq(f,d,model)
 	fbest.chisq = f.chisq
@@ -98,10 +98,10 @@ def sa_engine(fconf, modconf, d):
 		
 		#calculate the profiles
 		if d.dx is None:
-			model = calc.calc_profile_usm(d,f)
+			model = sas_calc.calc_profile_usm(d,f)
 		else:
-			model_usm = calc.calc_profile_usm(d,f)
-			model = calc.calc_profile(d,f,model_usm)
+			model_usm = sas_calc.calc_profile_usm(d,f)
+			model = sas_calc.calc_profile(d,f,model_usm)
 			
 		f.chisq = calc.chisq(f,d,model)
 		
@@ -430,10 +430,10 @@ def est_uncerts(d, f, best_model):
 	for w in range(0,len(stepped)):
 		#calculate the profiles
 		if d.dx is None:
-			lprof = sa_calc.calc_profile_usm(d, stepped[w])
+			lprof = sas_calc.calc_profile_usm(d, stepped[w])
 		else:
-			lprof_usm = sa_calc.calc_profile_usm(d, stepped[w]) 
-			lprof = sa_calc.calc_profile(d,stepped[w],lprof_usm)
+			lprof_usm = sas_calc.calc_profile_usm(d, stepped[w]) 
+			lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
 		
 		JT.append((lprof.y-best_model.y)/steps[w])
 	
