@@ -156,6 +156,7 @@ def outputSetRes(conf, res):
     ave = np.empty(parms,dtype=np.float64)
     std = np.empty(parms,dtype=np.float64)
     cor = np.empty([parms,parms],dtype=np.float64)
+    print("About to do some of the analysis calculation calls to numpy")
     for i in range(0,parms):
         ave[i] = np.average(vals[i])
         std[i] = np.std(vals[i])
@@ -169,6 +170,7 @@ def outputSetRes(conf, res):
                 cor[i][j] = 1.0
     
     #now, we can write the analysis of the results and the list of results
+    print("About to write the file fo the set analysis results")
     name = str(conf.output)+"_set_analysis.txt" 
     with open(name, 'w') as f:
         buff = "# analysis of the set of models " + conf.output + "\n"
@@ -203,10 +205,13 @@ def outputSetRes(conf, res):
     
     # this outputs a set of graphs showing the relationships between all pairs of variables
     # these are simple scatter plots of one variable plotted against the other, but it should be useful
+    print("Starting the first loop of plots")
     for i in range(0,(len(names)-1)):
         if varkinds[i] not in ["fixed"]:
             for j in range((i+1),len(names)):
                 if varkinds[j] not in ["fixed"]:
+                    outbuf = "Plot pair " + str(i) + " and " + str(j)
+                    print(outbuf)
                     fig = plt.figure(figsize = [4,4], dpi=100)
                     grph = fig.add_subplot(1,1,1)
                     grph.set_autoscale_on(True)
