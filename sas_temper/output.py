@@ -212,7 +212,7 @@ def outputSetRes(conf, res):
                 if varkinds[j] not in ["fixed"]:
                     outbuf = "Plot pair " + str(i) + " and " + str(j)
                     print(outbuf)
-                    fig = plt.figure(figsize=(4,4))
+                    fig = plt.figure()
                     print("created the fig")
                     grph = fig.add_subplot(1,1,1)
                     print("added the subplot")
