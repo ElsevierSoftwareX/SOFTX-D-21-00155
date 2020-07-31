@@ -27,8 +27,8 @@ import sas_temper.sas_data as sas_data
 
  # see if the program has been called correctly
 if len(sys.argv) < 2:
-	raise Exception("No configuration file was specified")
-	
+    raise Exception("No configuration file was specified")
+    
 # parse the configuration file for the parameters
 #modelConf = modelconfig.ModelConfig()
 #sasTemperConf = sa_config.SAConfiguration()
@@ -47,10 +47,10 @@ np.random.seed(int(tm.time()) + int(os.getpid()))
 
 # this loop creates the set of models
 for i in range(0,sasTemperConf.models):
-	results[i], models[i], models_usm[i] = engine.sa_control(sasTemperConf,modelConf,experimentalData)
-	
-	#output the results of the single fitting
-	output.outputSingleRes(sasTemperConf, experimentalData, models[i], i, results[i])
-	
+    results[i], models[i], models_usm[i] = engine.sa_control(sasTemperConf,modelConf,experimentalData)
+    
+    #output the results of the single fitting
+    output.outputSingleRes(sasTemperConf, experimentalData, models[i], i, results[i])
+    
 # and output the analysis of the set of models found
 output.outputSetRes(sasTemperConf, results)
