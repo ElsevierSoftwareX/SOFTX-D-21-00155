@@ -16,17 +16,17 @@ Oak Ridge National Laboratory, 2020
 import sas_temper.param as param
 
 class StructureFactor(object):
-	def __init__(self, type, params):
-		self.params = []
-		
-		if type in ["harsphere", "hayter_msa", "squarewell", "stickyhardsphere"]:
-			self.type = type
-		else:
-			# we just set this rather then throw an error
-			self.type = "hardsphere"
-		
-		for a, par in enumerate(params):
-			self.params.append(par)
-			
-		
-	
+    def __init__(self, type, params):
+        self.params = []
+        
+        if type in ["harsphere", "hayter_msa", "squarewell", "stickyhardsphere"]:
+            self.type = type
+        else:
+            # we just set this rather then throw an error
+            self.type = "hardsphere"
+        
+        for a, par in enumerate(params):
+            self.params.append(par)
+            
+        
+    
