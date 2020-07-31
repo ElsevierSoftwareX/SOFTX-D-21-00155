@@ -14,7 +14,7 @@ import os
 import numpy as np
 
 # these are from this particular project
-import sas_temper.sa_config as sa_config
+import sas_temper.sas_temper_config as sa_config
 import sas_temper.modelconfig as modelconfig
 import sas_temper.parse_conf as parse_conf
 import sas_temper.output as output
