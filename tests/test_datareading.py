@@ -23,10 +23,10 @@ def main():
 	plot_model(sys.argv[1], showPlot=False, saveImage=True)
 	
 def plot_model(filename, showPlot = False, saveImage = True):
-	#this clearly does not read a data file at this point in time
-	m1 = sas_data.SASData(filename,qmin=0.004,qmax=0.500)
-	m2 = sas_data.SASData(filename,0.010,0.250)
-	m3 = sas_data.SASData(filename,0.040,0.150)
+	# read in a data file with a couple different sets of options
+	m1 = sas_data.SAData(filename,qmin=0.004,qmax=0.500)
+	m2 = sas_data.SAData(filename,0.010,0.250)
+	m3 = sas_data.SAData(filename,0.040,0.150)
 	
 	#do some scaling to offset the curves
 	m2.y *= 10.0
