@@ -12,8 +12,8 @@ Oak Ridge National Laboratory, 2020
 
 """
 
-import numpy as np
 from matplotlib import pyplot as plt
+import numpy as np
 
 import sas_temper.sas_temper_config as config
 import sas_temper.sas_data as sas_data
