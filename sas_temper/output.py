@@ -210,10 +210,7 @@ def outputSetRes(conf, res):
         if varkinds[i] not in ["fixed"]:
             for j in range((i+1),len(names)):
                 if varkinds[j] not in ["fixed"]:
-                    outbuf = "Plot pair " + str(i) + " and " + str(j)
-                    print(outbuf)
                     fig = plt.figure()
-                    print("created the fig")
                     grph = fig.add_subplot(1,1,1)
                     print("added the subplot")
                     grph.set_autoscale_on(True)
