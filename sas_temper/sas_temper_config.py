@@ -13,7 +13,7 @@ import yaml
 
 def load_config(config_file="name"):
     with open(config_file, 'r') as f:
-        return yaml.load(f)
+        return yaml.load(f, Loader=yaml.SafeLoader)
         
 
 class SAConfiguration(object):
