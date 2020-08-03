@@ -24,9 +24,9 @@ def main():
 	if len(sys.argv) < 2:
 		raise Exception("No input sans data file specified")
 		
-	input_data1 = data.SASData(sys.argv[1],qmin=0.004,qmax=0.50)
-	input_data2 = data.SASata(sys.argv[1],qmin=0.01,qmax=0.30)
-	input_data3 = data.SASData(sys.argv[1],qmin=0.04,qmax=0.15)
+	input_data1 = data.SAData(sys.argv[1],qmin=0.004,qmax=0.50)
+	input_data2 = data.SAData(sys.argv[1],qmin=0.01,qmax=0.30)
+	input_data3 = data.SAData(sys.argv[1],qmin=0.04,qmax=0.15)
 	output_data1 = data.Model(input_data1, unsmeared=False)
 	output_data2 = data.Model(input_data2, unsmeared=True)
 	output_data3 = data.Model(input_data3, unsmeared=False)

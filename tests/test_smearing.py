@@ -8,8 +8,7 @@ test_smearing.py:  perform a test calculation that reads in real
 
 This is intended for the "tests" folder.  
 
-Oak Ridge National Laboratory
-William Heller, 2017
+Oak Ridge National Laboratory, 2020
 
 """
 
@@ -36,7 +35,7 @@ def main():
 	
 	# get the input data specified in the configuration file
 	# this also creates the model intensity profiles
-	input_data = data.SASData(sasTemperConf.datafile,np.float64(sasTemperConf.qmin),np.float64(sasTemperConf.qmax))
+	input_data = data.SAData(sasTemperConf.datafile,np.float64(sasTemperConf.qmin),np.float64(sasTemperConf.qmax))
 	smeared_calc = data.Model(input_data, unsmeared=False)
 	unsmeared_calc = data.Model(input_data, unsmeared=True)
 	
@@ -55,10 +54,10 @@ def main():
 			modelConf.params[i].val = 100.0
 			
 	# now, we do the calculation
-	print "model configuration name " + str(modelConf.name)
-	print "input data file "+str(sasTemperConf.datafile) + " q-range "+str(sasTemperConf.qmin)+"\t"+str(sasTemperConf.qmax)
-	print "\t\tinput data dq "+str(input_data.dx[10])+" at a q of "+str(input_data.x[10])
-	print "\t\tlength of the input data smearing array "+str(len(input_data.dx))
+	print ("model configuration name " + str(modelConf.name))
+	print ("input data file "+str(sasTemperConf.datafile) + " q-range "+str(sasTemperConf.qmin)+"\t"+str(sasTemperConf.qmax))
+	print ("\t\tinput data dq "+str(input_data.dx[10])+" at a q of "+str(input_data.x[10]))
+	print ("\t\tlength of the input data smearing array "+str(len(input_data.dx)))
 	
 	unsmeared_calc = calc.calc_profile_usm(input_data, modelConf)
 	smeared_calc = calc.calc_profile(input_data, modelConf, unsmeared_calc)
