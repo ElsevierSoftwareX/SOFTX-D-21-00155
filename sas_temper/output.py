@@ -170,7 +170,6 @@ def outputSetRes(conf, res):
                 cor[i][j] = 1.0
     
     #now, we can write the analysis of the results and the list of results
-    print("About to write the file fo the set analysis results")
     name = str(conf.output)+"_set_analysis.txt" 
     with open(name, 'w') as f:
         buff = "# analysis of the set of models " + conf.output + "\n"
