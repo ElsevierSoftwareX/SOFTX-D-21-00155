@@ -170,7 +170,6 @@ def outputSetRes(conf, res):
                 cor[i][j] = 1.0
     
     #now, we can write the analysis of the results and the list of results
-    print("About to write the file fo the set analysis results")
     name = str(conf.output)+"_set_analysis.txt" 
     with open(name, 'w') as f:
         buff = "# analysis of the set of models " + conf.output + "\n"
@@ -205,26 +204,19 @@ def outputSetRes(conf, res):
     
     # this outputs a set of graphs showing the relationships between all pairs of variables
     # these are simple scatter plots of one variable plotted against the other, but it should be useful
-    print("Starting the first loop of plots")
     for i in range(0,(len(names)-1)):
         if varkinds[i] not in ["fixed"]:
             for j in range((i+1),len(names)):
                 if varkinds[j] not in ["fixed"]:
                     fig = plt.figure()
                     grph = fig.add_subplot(1,1,1)
-                    print("added the subplot")
                     grph.set_autoscale_on(True)
-                    print("turned on autoscale")
                     grph.plot(vals[i],vals[j],'bo')
-                    print("made the call to plot()")
                     grph.set_title(str(names[j])+" vs. "+str(names[i]))
-                    print("set the title of the plot") 
                     
                     oname = str(conf.output)+"_"+str(names[j])+"_"+str(names[i])+".png"
                     fig.savefig(oname,format="png")
-                    print("saved the fig")
                     plt.close(fig)
-                    print("closed the fig")
                     
     # output histograms of the non-fixed parameters
     for i in range(0,len(names)):
