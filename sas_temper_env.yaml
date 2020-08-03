@@ -1,0 +1,9 @@
+name: sas_temper
+dependencies:
+- numpy
+- nb_conda
+- python=3.6
+- pip:
+  - scipy
+  - matplotlib
+  - sasmodels
