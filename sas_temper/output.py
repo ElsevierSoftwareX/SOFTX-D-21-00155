@@ -205,29 +205,19 @@ def outputSetRes(conf, res):
     
     # this outputs a set of graphs showing the relationships between all pairs of variables
     # these are simple scatter plots of one variable plotted against the other, but it should be useful
-    print("Starting the first loop of plots")
     for i in range(0,(len(names)-1)):
         if varkinds[i] not in ["fixed"]:
             for j in range((i+1),len(names)):
                 if varkinds[j] not in ["fixed"]:
-                    outbuf = "Plot pair " + str(i) + " and " + str(j)
-                    print(outbuf)
                     fig = plt.figure()
-                    print("created the fig")
                     grph = fig.add_subplot(1,1,1)
-                    print("added the subplot")
                     grph.set_autoscale_on(True)
-                    print("turned on autoscale")
                     grph.plot(vals[i],vals[j],'bo')
-                    print("made the call to plot()")
                     grph.set_title(str(names[j])+" vs. "+str(names[i]))
-                    print("set the title of the plot") 
                     
                     oname = str(conf.output)+"_"+str(names[j])+"_"+str(names[i])+".png"
                     fig.savefig(oname,format="png")
-                    print("saved the fig")
                     plt.close(fig)
-                    print("closed the fig")
                     
     # output histograms of the non-fixed parameters
     for i in range(0,len(names)):
