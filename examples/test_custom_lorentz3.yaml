@@ -3,7 +3,7 @@ file:
     qmin: 0.01
     qmax: 0.30
     
-output_files: test_custom
+output_files: test_custom_lorentz3
 
 sa_parameters: 
     temperatures: 100
