@@ -1,0 +1,41 @@
+file: 
+    name: 29983_merged.txt
+    qmin: 0.01
+    qmax: 0.30
+    
+output_files: test_custom
+
+sa_parameters: 
+    temperatures: 100
+    temperature_rate: 0.90
+    parameter_rate: 0.95
+    iterations: 1000
+    models_to_generate: 3
+
+model:
+    name: lorentzian3
+    category: shape-independent
+    scale:
+        fixed: [1.00]
+    background: 
+        linear: [0.000, 0.10]
+    scale_1: 
+        linear: [10.0, 100.0]
+    length_1: 
+        linear: [500.0, 1500.0]
+    exponent_1: 
+        linear: [2.5, 3.5] 
+    scale_2: 
+        linear: [1.0, 10.0]
+    length_2: 
+        linear: [50.0, 150.0]
+    exponent_2: 
+        linear: [1.5, 2.5] 
+    scale_3: 
+        linear: [0.1, 1.0]
+    length_3: 
+        linear: [5.0, 15.0]
+    exponent_3: 
+        linear: [0.5, 1.5] 
+    
+
