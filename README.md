@@ -32,6 +32,6 @@ pip install --upgrade git+https://code.ornl.gov/wt3/sas_temper.git@<branch_name>
 An example is available in the `tests` directory:
 
 ```
-cd tests
+cd examples
 sas_temper test_sphere_nz.yaml
 ```
