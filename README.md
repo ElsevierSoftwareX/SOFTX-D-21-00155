@@ -29,7 +29,7 @@ or, if you want a specific branch
 pip install --upgrade git+https://code.ornl.gov/wt3/sas_temper.git@<branch_name>
 
 **Usage**
-An example is available in the `tests` directory:
+An example is available in the `examples` directory:
 
 ```
 cd examples
