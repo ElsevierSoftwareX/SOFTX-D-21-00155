@@ -8,6 +8,7 @@ output_files: test_sphere1
 sa_parameters: 
     temperatures: 100
     temperature_rate: 0.90
+    parameter_rate: 0.95
     iterations: 1000
     models_to_generate: 20
 
