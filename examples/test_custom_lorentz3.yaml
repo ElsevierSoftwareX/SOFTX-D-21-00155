@@ -8,7 +8,6 @@ output_files: test_custom_lorentz3
 sa_parameters: 
     temperatures: 100
     temperature_rate: 0.90
-    parameter_rate: 0.95
     iterations: 1000
     models_to_generate: 3
 
