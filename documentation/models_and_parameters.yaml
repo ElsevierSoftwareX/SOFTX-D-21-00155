@@ -1,0 +1,1803 @@
+adsorbed_layer:
+    name: adsorbed_layer
+    Category: shape-sphere
+    scale: 
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    second_moment:
+        linear: [5.0, 100.0]
+    adsorbed_amount: 
+        linear: [0.0, 4.0]
+    density_shell: 
+        linear: [0.50, 1.50]
+    radius: 
+        log: [1.0, 3.0]
+    volfraction: 
+        linear: [0.0, 0.25]
+    sld_shell: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+
+barbell:
+    name: barbell
+    Category: shape-cylinder
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius_bell: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    radius: 
+        linear: [1.0, 3.0] 
+        coupled: [radius_bell]
+    length:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+bcc_paracrystal:
+    name: bcc_paracrystal
+    Category: shape-paracrystal
+    scale: 
+        fixed: [1.0]
+   background:
+        fixed: [0.001]
+    radius: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    dnn: 
+        linear: [1.0, 3.0] 
+        coupled: [radius]
+    d_factor: 
+        linear: [0.0, 0.10]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+   
+be_polyelectrolyte:
+    name: be_polyelectrolyte
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    contrast_factor:
+        linear: [-20.0, 20.0]
+    bjerrum_length:
+        linear: [5.0, 20.0]
+    virial_param:
+        linear: [0.0, 20.0]
+    monomer_length:
+        linear: [5.0, 20.0]
+    salt_concentration:
+        linear: [0.0, 6.0]
+    ionization_degree:
+        linear: [0.0, 1.0]
+    polymer_concentration:
+        linear: [0.0, 2.0]
+    
+binary_hard_sphere:
+    name: binary_hard_sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    radius_sm:
+        log: [1.0, 3.0]
+    radius_lg: 
+        linear: [1.0, 10.0] 
+        coupled: [radius_sm]
+    volfraction_sm: 
+        linear: [0.0, 0.25]
+    volfraction_lg: 
+        linear: [0.0, 2.0] 
+        coupled: [volfraction_sm]
+    sld_lg:
+        linear: [-0.56, 8.00]
+    sld_sm: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+
+broad_peak:
+    name: broad_peak
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    porod_scale:
+        linear: [0.000001, 0.00005] 
+    porod_exp: 
+        linear: [2.0, 4.0] 
+    lorentz_scale: 
+        linear: [5.0, 100.0] 
+    lorentz_length:
+        linear: [20.0, 100.0] 
+    peak_pos:
+        log: [-2.0, 0.0]
+    lorentz_exp:
+        linear: [1.0, 3.0]
+
+capped_cylinder:
+    name: capped_cylinder
+    Category: shape-cylinder
+    scale:
+       fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    radius_cap: 
+        linear: [1.0,10.0] 
+        coupled: [radius]
+    length:
+        linear: [1.0, 10000.0] 
+        coupled: [radius_cap]
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40] 
+    
+core_multi_shell:
+    name: core_multi_shell
+    Category: shape-sphere
+    scale: 
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    n:
+        integer: [1, 10]
+    thickness1: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness2: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness3: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness4: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness5: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness6: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness7: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness8:
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness9: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness10: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    sld1:
+        linear: [-0.56, 8.00]
+    sld2: 
+        linear: [-0.56, 8.00]
+    sld3:
+        linear: [-0.56, 8.00]
+    sld4: 
+        linear: [-0.56, 8.00]
+    sld5:
+        linear: [-0.56, 8.00]
+    sld6: 
+        linear: [-0.56, 8.00]
+    sld7: 
+        linear: [-0.56, 8.00]
+    sld8: 
+        linear: [-0.56, 8.00]
+    sld9: 
+        linear: [-0.56, 8.00]
+    sld10:
+        linear: [-0.56, 8.00]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+   
+core_shell_bicelle_elliptical:
+    name: core_shell_bicelle_elliptical
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_face:
+        linear: [-0.56, 8.00]
+    sld_rim: 
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    x_core: 
+        log: [0.0, 10.0]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    length:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_rim:
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_face:
+        log: [1.0, 2.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+
+core_shell_bicelle:
+    name: core_shell_bicelle
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_face:
+        linear: [-0.56, 8.00]
+    sld_rim:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    length: 
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_rim:
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_face:
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    
+core_shell_cylinder:
+    name: core_shell_cylinder
+    Category: shape-cylinder
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld_core: 
+        linear: [-0.56, 8.00]
+    sld_shell: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 4.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness: 
+        linear: [10.0, 200.0] 
+        polydispersity: 
+            GaussianDispersion: [0.0, 0.40]
+    length: 
+        log: [1.0, 4.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+
+core_shell_ellipsoid:
+    name: core_shell_ellipsoid
+    Category: shape-ellipsoid
+    scale:  
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_shell:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    x_core:
+        linear: [0.1, 10.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    radius_equat_core:
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thick_shell: 
+        log: [0.0, 2.0] 
+        coupled: [radius_equat_core]
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40] 
+    x_polar_shell:
+        linear: [0.1, 10.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+
+core_shell_parallelepiped:
+    name: core_shell_parallelepiped
+    Category: shape-parallelepiped
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_a:
+        linear: [-0.56, 8.00]
+    sld_b: 
+        linear: [-0.56, 8.00]
+    sld_c:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    length_a:
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    length_b:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    length_c:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_rim_a: 
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_rim_b: 
+        log: [1.0, 2.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thick_rim_c: 
+        log: [1.0, 2.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+
+core_shell_sphere:
+    name: core_shell_sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_shell:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness:
+        log: [0.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+
+correlation_length:
+    name: correlation_length
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    lorentz_scale: 
+        linear: [10.0, 100.0] 
+    porod_scale: 
+        linear: [0.000001, 0.000005] 
+    cor_length: 
+        linear: [20.0, 100.0] 
+    porod_exp:
+        linear: [2.0, 3.0] 
+    lorentz_exp: 
+        linear: [1.8, 3.0] 
+
+cylinder:
+    name: cylinder
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    length:
+        log: [1.0, 5.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    
+dab:
+    name: dab
+    Category: shape-independent
+    scale: 
+        log: [1.0, 3.0]
+    background: 
+        fixed: [0.001]
+    cor_length: 
+        log: [1.0, 3.0]
+
+ellipsoid:
+    name: ellipsoid
+    Category: shape-ellipsoid
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius_polar:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    radius_equatorial:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+
+elliptical_cylinder:
+    name: elliptical_cylinder
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius_minor:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    axis_ratio:
+        log: [0.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    length: 
+        log: [1.0, 5.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+fcc_paracrystal:
+    name: fcc_paracrystal
+    Category: shape-paracrystal
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    dnn: 
+        linear: [1.0, 3.0] 
+        coupled: [radius]
+    d_factor:
+        linear: [0.0, 0.10]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+
+flexible_cylinder_elliptical:
+    name: flexible_cylinder_elliptical
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    axis_ratio:
+        linear: [1.0, 10.0] 
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    length:
+        log: [1.0, 5.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    kuhn_length:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    
+flexible_cylinder:
+    name: flexible_cylinder
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    length:
+        log: [1.0, 5.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    kuhn_length: 
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    
+fractal_core_shell:
+    name: fractal_core_shell
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_shell:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    volfraction:
+        linear: [0.01, 0.10]
+    fractal_dim:
+        linear: [1.5, 3.0]
+    radius:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    cor_length:
+        linear: [1.0, 10.0] 
+        coupled: [radius]
+
+fractal:
+    name: fractal
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld_block: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    volfraction: 
+        linear: [0.01, 0.10]
+    fractal_dim: 
+        linear: [1.5, 3.0]
+    radius:
+        linear: [5.0, 50.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    cor_length: 
+        linear: [1.0, 10.0] 
+        coupled: [radius]
+    
+fuzzy_sphere:
+    name: fuzzy_sphere
+    Category: shape-sphere
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.0]  
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    fuzziness: 
+        linear: [0.25, 2.0] 
+        coupled: [radius]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction: 
+            linear: [0.0, 0.50]
+
+gaussian_peak:
+    name: gaussian_peak
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    peak_pos: 
+        linear: [0.001, 1.0]
+    sigma:
+        linear: [0.0001, 0.10]
+
+gauss_lorentz_gel:
+    name: gauss_lorentz_gel
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    gauss_scale:
+        log: [1.0, 4.0]
+    lorentz_scale: 
+        log: [1.0, 4.0]
+    cor_length_static: 
+        log: [1.0, 3.0]
+    cor_length_dynamic: 
+        log: [1.0, 3.0]
+
+gel_fit:
+    name: gel_fit
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    guinier_scale:
+        log: [1.0, 2.0]
+    rg:
+        log: [1.0, 3.0]
+    lorentz_scale:
+        log: [1.0, 2.0]
+    fractal_dim: 
+        linear: [1.0, 4.0]
+    cor_length: 
+        log: [1.0, 3.0]
+
+guinier_porod:
+    name: guinier_porod
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    rg:
+        log: [1.0, 3.0]
+    s:
+        linear: [1.0, 3.0]
+    porod_exp: 
+        linear: [1.01, 1.333]
+        coupled: [s]
+
+guinier:
+    name: guinier
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    rg: 
+        log: [1.0, 3.0]
+
+hollow_cylinder:
+    name: hollow_cylinder
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 4.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness:
+        linear: [10.0, 200.0] 
+        polydispersity: 
+            GaussianDispersion: [0.0, 0.40]
+    length:
+        log: [1.0, 4.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+hollow_rectangular_prism_thin_walls:
+    name: hollow_rectangular_prism_thin_walls
+    Category: shape-parallelepiped
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    length_a:
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    b2a_ratio:
+        linear: [0.01, 1.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    c2a_ratio:
+        linear: [0.01, 1.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+hollow_rectangular_prism:
+    name: hollow_rectangular_prism
+    Category: shape-parallelepiped
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    length_a: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    b2a_ratio:
+        linear: [0.01, 1.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    c2a_ratio:
+        linear: [0.01, 1.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+lamellar_hg_stack_caille:
+    name: lamellar_hg_stack_caille
+    Category: shape-lamellae
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_head:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    Nlayers:
+        integer: [10, 1000]
+    length_tail:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            GaussianDispersion: [0.0, 0.40]
+    length_head:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            GaussianDispersion: [0.0, 0.40]
+    d_spacing:
+        linear: [5.0, 10.0] 
+        coupled: [length_tail]
+        polydispersity: 
+            GaussianDispersion: [0.0, 0.40] 
+    Caille_parameter: 
+        linear: [0.001, 0.50]
+
+lamellar_hg:
+    name: lamellar_hg
+    Category: shape-lamellae
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_head:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    length_tail:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            GaussianDispersion: [0.0, 0.40]
+    length_head:
+        linear: [5.0, 100.0] 
+        polydispersity: 
+            GaussianDispersion: [0.0, 0.40]
+
+lamellar_stack_caille:
+    name: lamellar_stack_caille
+    Category: shape-lamellae
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    Nlayers:
+        integer: [10, 1000]
+    thickness:
+        linear: [5.0, 100.0] 
+        polydispersity: 
+            GaussianDispersion: [0.0, 0.40]
+    d_spacing:
+        linear: [1.1, 10.0] 
+        coupled: [thickness]
+        polydispersity:
+            GaussianDispersion: [0.0, 0.40] 
+    Caille_parameter: 
+        linear: [0.001, 0.50]
+
+lamellar_stack_paracrystal:
+    name: lamellar_stack_paracrystal
+    Category: shape-lamellae
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    Nlayers:
+        integer: [10, 1000]
+    thickness:
+        linear: [5.0, 100.0] 
+        polydispersity: 
+            GaussianDispersion: [0.0, 0.40]
+    d_spacing:
+        linear: [1.1, 10.0] 
+        coupled: [thickness]
+    sigma_d:
+        linear: [0.001, 1.0] 
+        coupled: [d_spacing]
+
+lamellar:
+    name: lamellar
+    Category: shape-lamellae
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    thickness:
+        log: [1.0, 2.0] 
+        polydispersity:
+            GaussianDispersion: [0.0, 0.40]
+
+linear_pearls:
+    name: linear_pearls
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.0]
+    edge_sep: 
+        linear: [0.01, 25.0] 
+        coupled: [radius]
+    num_pearls: 
+        integer: [3, 10]
+
+line:
+    name: line
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    intercept:
+        log: [1.0, 4.0]
+    slope: 
+        linear: [-500.0, 0.0]
+
+lorentz:
+    name: lorentz
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    cor_length: 
+        log: [1.0, 3.0]
+
+mass_fractal:
+    name: mass_fractal
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    radius: 
+        log: [1.0, 2.0]
+    fractal_dim_mass: 
+        linear: [1.7, 3.0]
+    cutoff_length: 
+        linear: [2.0, 10.0] 
+        coupled: [radius]
+
+mass_surface_fractal:
+    name: mass_surface_fractal
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    rg_cluster:
+        log: [1.0, 2.0]
+    rg_primary: 
+        log: [2.0, 4.0] 
+        coupled: [rg_cluster]
+    fractal_dim_mass: 
+        linear: [1.7, 3.0]
+    fractal_dim_surf: 
+        linear: [2.0, 3.0]
+
+mono_gauss_coil:
+    name: mono_gauss_coil
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    rg: 
+        log: [1.0, 3.0]
+    i_zero: 
+        log: [-1.0, 4.0]
+
+multilayer_vesicle:
+    name: multilayer_vesicle
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_shell: 
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_solvent:
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    n_shells: 
+        integer: [1, 25]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+
+onion:
+    name: onion
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    sld_in1: 
+        linear: [-0.56, 8.00]
+    sld_in2:
+        linear: [-0.56, 8.00]
+    sld_in3:
+        linear: [-0.56, 8.00]
+    sld_in4:
+        linear: [-0.56, 8.00]
+    sld_in5:
+        linear: [-0.56, 8.00]
+    sld_in6:
+        linear: [-0.56, 8.00]
+    sld_in7:
+        linear: [-0.56, 8.00]
+    sld_in8:
+        linear: [-0.56, 8.00]
+    sld_in9:
+        linear: [-0.56, 8.00]
+    sld_in10: 
+        linear: [-0.56, 8.00]
+    sld_out1:
+        linear: [-0.56, 8.00]
+    sld_out2:
+        linear: [-0.56, 8.00]
+    sld_out3:
+        linear: [-0.56, 8.00]
+    sld_out4:
+        linear: [-0.56, 8.00]
+    sld_out5:
+        linear: [-0.56, 8.00]
+    sld_out6:
+        linear: [-0.56, 8.00]
+    sld_out7:
+        linear: [-0.56, 8.00]
+    sld_out8:
+        linear: [-0.56, 8.00]
+    sld_out9:
+        linear: [-0.56, 8.00]
+    sld_out10:
+        linear: [-0.56, 8.00]
+    A1:
+        linear: [-5.0, 5.0]
+    A2:
+        linear: [-5.0, 5.0]
+    A3:
+        linear: [-5.0, 5.0]
+    A4:
+        linear: [-5.0, 5.0]
+    A5:
+        linear: [-5.0, 5.0]
+    A6:
+        linear: [-5.0, 5.0]
+    A7:
+        linear: [-5.0, 5.0]
+    A8:
+        linear: [-5.0, 5.0]
+    A9:
+        linear: [-5.0, 5.0]
+    A10:
+        linear: [-5.0, 5.0]
+    radius_core:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness1:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness2:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness3:
+        linear: [5.0, 100.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness4:
+        linear: [5.0, 100.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    thickness5:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness6:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness7:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness8:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness9:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness10:
+        linear: [5.0, 100.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+parallelepiped:
+    name: parallelepiped
+    Category: shape-parallelepiped
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    length_a: 
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    length_b: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    length_c: 
+        log: [1.0, 3.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+
+peak_lorentz:
+    name: peak_lorentz
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    peak_pos:
+        log: [-3.0, 0.0]
+    peak_hwhm: 
+        log: [-3.0, 1.0]
+
+pearl_necklace:
+    name: pearl_necklace
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_string:
+        linear: [-0.56, 8.0]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.0]
+    edge_sep: 
+        linear: [0.01, 25.0] 
+        coupled: [radius]
+    num_pearls: 
+        integer: [3, 10]
+    thick_string: 
+        linear: [0.01, 1.0] 
+        coupled: [radius] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+
+poly_gauss_coil:
+    name: poly_gauss_coil
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    i_zero:
+        log: [1.0, 4.0]
+    rg: 
+        log: [1.0, 2.8]
+    polydispersity: 
+        linear: [1.0, 2.0]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50] 
+        radius_effective: 
+            linear: [1.0, 1.5] 
+            coupled: [rg]
+        
+polymer_excl_volume:
+    name: polymer_excl_volume
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    rg:
+        log: [1.0, 3.0]
+    porod_exp: 
+        linear: [1.0, 4.0]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+
+porod:
+    name: porod
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+
+power_law:
+    name: power_law
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    power: 
+        linear: [1.0, 5.0]
+
+pringle:
+    name: pringle
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    radius:
+        log: [1.0, 4.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness:
+        linear: [0.01, 1.0] 
+        coupled: [radius] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    alpha:
+        linear: [0.0, 0.10] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    beta: 
+        linear: [0.0, 1.0] 
+        coupled: [alpha] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+raspberry:
+    name: raspberry
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_lg:
+        linear: [-0.56, 8.00]
+    sld_sm:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    volfraction_lg:
+        linear: [0.00, 0.25]
+    volfraction_sm: 
+        linear: [0.0, 0.1] 
+        coupled: [volfraction_lg]
+    surface_fraction:
+        linear: [0.0, 0.8]
+    radius_lg: 
+        log: [3.0, 5.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    radius_sm:
+        log: [1.0, 2.5]
+    penetration:
+        linear: [0.0, 1.0] 
+        coupled: [radius_sm]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction: 
+            linear: [ 0.0, 0.50]
+
+rectangular_prism:
+    name: rectangular_prism
+    Category: shape-parallelepiped
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    length_a:
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    b2a_ratio:
+        linear: [0.01, 1.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    c2a_ratio:
+        linear: [0.01, 1.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+
+sc_paracrystal:
+    name: sc_paracrystal
+    Category: shape-paracrystal
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    radius: 
+        log: [1.0, 3.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    dnn: 
+        linear: [1.0, 3.0] 
+        coupled: [radius]
+    d_factor: 
+        linear: [0.0, 0.10]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+
+sphere:
+    name: sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.5] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction: 
+            linear: [0.0, 0.50]
+
+spherical_sld:
+    name: spherical_sld
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    n_steps:
+        fixed: [35]
+    n_shells:
+        integer: [1, 10]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    sld1:
+        linear: [-0.56, 8.00]
+    sld2:
+        linear: [-0.56, 8.00]
+    sld3:
+        linear: [-0.56, 8.00]
+    sld4:
+        linear: [-0.56, 8.00]
+    sld5:
+        linear: [-0.56, 8.00]
+    sld6:
+        linear: [-0.56, 8.00]
+    sld7:
+        linear: [-0.56, 8.00]
+    sld8:
+        linear: [-0.56, 8.00]
+    sld9:
+        linear: [-0.56, 8.00]
+    sld10:
+        linear: [-0.56, 8.00]
+    thickness1:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness2:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness3:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness4:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness5:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness6:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness7:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness8:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness9:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness10:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface1:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface2:
+        linear: [5.0, 50.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    interface3:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface4:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface5:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface6:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface7:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface8:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface9:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    interface10:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    nu1:
+        linear: [1.0, 4.0]
+    nu2:
+        linear: [1.0, 4.0]
+    nu3:
+        linear: [1.0, 4.0]
+    nu4:
+        linear: [1.0, 4.0]
+    nu5:
+        linear: [1.0, 4.0]
+    nu6:
+        linear: [1.0, 4.0]
+    nu7:
+        linear: [1.0, 4.0]
+    nu8:
+        linear: [1.0, 4.0]
+    nu9:
+        linear: [1.0, 4.0]
+    nu10:
+        linear: [1.0, 4.0]
+    shape1:
+        integer: [0, 4]
+    shape2:
+        integer: [0, 4]
+    shape3:
+        integer: [0, 4]
+    shape4:
+        integer: [0, 4]
+    shape5:
+        integer: [0, 4]
+    shape6:
+        integer: [0, 4]
+    shape7:
+        integer: [0, 4]
+    shape8:
+        integer: [0, 4]
+    shape9:
+        integer: [0, 4]
+    shape10:
+        integer: [0, 4]
+
+stacked_disks:
+    name: stacked_disks
+    Category: shape-cylinder
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld_core:
+        linear: [-0.56, 8.00]
+    sld_layer:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    n_stacking:
+        integer: [2, 100]
+    radius: 
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_core: 
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thick_layer:
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    sigma_d:
+        linear: [0.0, 0.25] 
+        coupled: [thick_layer]
+
+star_polymer:
+    name: star_polymer
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    rg_squared: 
+        log: [1.0, 3.0]
+    arms: 
+        integer: [1, 10]
+
+surface_fractal:
+    name: surface_fractal
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    fractal_dim_surf:
+        linear: [1.0, 3.0]
+    radius: 
+        linear: [5.0, 50.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    cutoff_length: 
+        linear: [5.0, 100.0] 
+        coupled: [radius]
+
+triaxial_ellipsoid:
+    name: triaxial_ellipsoid
+    Category: shape-ellipsoid
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius_equat_minor: 
+        log: [1.0, 4.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    radius_equat_major: 
+        log: [1.0, 4.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    radius_polar: 
+        log: [1.0, 4.0] 
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction: 
+            linear: [0.0, 0.50]
+
+teubner_strey:
+    name: teubner_strey
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld_a: 
+        linear: [-0.56, 8.00]
+    sld_b: 
+        linear: [-0.56, 8.00]
+    d: 
+        log: [1.0, 2.5]
+    xi: 
+        linear: [2.5, 100.0] 
+        coupled: [d]
+
+two_lorentzian:
+    name: two_lorentzian
+    Category: shape-independent
+    scale: 
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    lorentz_scale_1: 
+        log: [2.0, 4.0]
+    lorentz_scale_2: 
+        linear: [0.01, 0.10] 
+        coupled: [lorentz_scale_1]
+    lorentz_length_1: 
+        log: [2.0, 3.0]
+    lorentz_length_2: 
+        log: [0.0, 2.0]
+    lorentz_exp_1: 
+        linear: [1.0, 3.0]
+    lorentz_exp_2: 
+        linear: [1.0, 3.0]
+
+two_power_law:
+    name: two_power_law
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    coefficent_1: 
+        log: [1.0, 4.0]
+    crossover: 
+        linear: [0.01, 0.50]
+    power_1: 
+        linear: [1.0, 4.0]
+    power_2: 
+        linear: [1.0, 4.0]
+
+unified_power_Rg:
+    name: unified_power_Rg
+    Category: shape-independent
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    level:
+        integer: [1, 6]
+    rg1:
+        log: [2.0, 5.0]
+    rg2:
+        linear: [0.01, 0.99] 
+        coupled: [rg1]
+    rg3:
+        linear: [0.01, 0.99] 
+        coupled: [rg2]
+    rg4:
+        linear: [0.01, 0.99] 
+        coupled: [rg3]
+    rg5:
+        linear: [0.01, 0.99] 
+        coupled: [rg4]
+    rg6:
+        linear: [0.01, 0.99] 
+        coupled: [rg5]
+    power1:
+        linear: [1.0, 4.0]
+    power2:
+        linear: [1.0, 4.0]
+    power3:
+        linear: [1.0, 4.0]
+    power4:
+        linear: [1.0, 4.0]
+    power5: 
+        linear: [1.0, 4.0]
+    power6:
+        linear: [1.0, 4.0]
+    B1:
+        log: [-8.0, -5.0]
+    B2:
+        log: [-8.0, -5.0]
+    B3:
+        log: [-8.0, -5.0]
+    B4:
+        log: [-8.0, -5.0]
+    B5:
+        log: [-8.0, -5.0]
+    B6:
+        log: [-8.0, -5.0]
+    G1: 
+        log: [2.0, 5.0]
+    G2: 
+        linear: [0.01, 0.99] 
+        coupled: [G1]
+    G3:
+        linear: [0.01, 0.99] 
+        coupled: [G2]
+    G4:
+        linear: [0.01, 0.99] 
+        coupled: [G3]
+    G5:
+        linear: [0.01, 0.99] 
+        coupled: [G4]
+    G6:
+        linear: [0.01, 0.99] 
+        coupled: [G5]
+
+vesicle:
+    name: vesicle
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    sld:
+        linear: [-0.56, 8.00]
+    sld_solvent:
+        linear: [-0.56, 6.38]
+    volfraction:
+        linear: [0.00, 1.00]
+    radius: 
+        log: [3.0, 5.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    thickness:
+        log: [1.0, 2.0] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        volfraction:
+            linear: [0.0, 0.50]
+
