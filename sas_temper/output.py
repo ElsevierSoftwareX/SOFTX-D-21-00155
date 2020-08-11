@@ -248,7 +248,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.ylabel('Intensity  (1/cm)')
     
     # plot the data
-    grph.plot(d.x, d.y, yerr=d.dy, uplims = True, lolims = True, 'ko')
+    grph.plot(d.x, d.y, 'ko', yerr=d.dy, uplims = True, lolims = True)
     
     # plot the fit curve
     grph.plot(m.x, m.y, 'r')
