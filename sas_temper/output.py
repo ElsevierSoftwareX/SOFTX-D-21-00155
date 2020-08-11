@@ -241,14 +241,16 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.set_autoscale_on(True)
     
     # set the plot title
-    grph.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+str(chisq))
+    val = "%6.4f" %(chisq)
+    grph.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
     
     # set the text of the axes
     grph.set_xlabel('q  (1/Angstroms)')
     grph.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.  No errorbars here
-    grph.loglog(d.x, d.y, 'ko', m.x, m.y, 'r')
+    grph.loglog(d.x, d.y, 'ko')
+    grph.loglog(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
     fig.savefig(oname,format='png')
