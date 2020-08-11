@@ -21,9 +21,11 @@ model:
         linear: [0.000, 0.010]
     sld: 
         linear: [-0.56, 8.00]
+        #log: [0.0, 1.0]
     sld_solvent: 
-        linear: [-0.56, 6.38]
-        #coupled: [sld]
+        #linear: [1.0, 2.0]
+        log: [1.0, 2.0]
+        coupled: [sld]
     radius: 
         linear: [50.0, 300.0] 
         polydispersity:
