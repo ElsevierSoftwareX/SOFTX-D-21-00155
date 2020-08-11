@@ -245,7 +245,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
     
     # set the text of the axes
-    grph.set_xlabel('q  (1/Angstroms)')
+    grph.set_xlabel('q  (1/{\AA})')
     grph.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.  No errorbars here
