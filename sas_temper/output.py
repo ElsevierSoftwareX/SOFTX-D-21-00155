@@ -90,6 +90,9 @@ def outputSingleRes(conf, d, m, mnum, res):
     
     # end by closing the file
     f.close()
+    
+    # output a plot of the data and the fit curve
+    outputFitCurve(conf,d,m,mnum,lres.chisq)
 
     
 # this function takes the set of results, calculates the average and standard deviations, and outputs them
@@ -231,4 +234,25 @@ def outputSetRes(conf, res):
             fig.savefig(oname,format="png")
             plt.close(fig)
 
+    
+def outputFitCurve(conf, d, m, mnum, chisq):
+    fig = plt.figure()
+    grph = fig.add_subplot(1,1,1)
+    grph.set_autoscale_on(True)
+    
+    # set the plot title
+    val = "%6.4f" %(chisq)
+    grph.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
+    
+    # set the text of the axes
+    grph.set_xlabel('q  (1/${\AA}$)')
+    grph.set_ylabel('Intensity  (1/cm)')
+    
+    # plot the data and the fit curve.  No errorbars here
+    grph.loglog(d.x, d.y, 'ko')
+    grph.loglog(m.x, m.y, 'r')
+    
+    oname = str(conf.output)+"%02d.png" %(mnum)
+    fig.savefig(oname,format='png')
+    plt.close(fig)
     
