@@ -254,6 +254,6 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.plot(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
-    fit.savefig(oname,format='png')
+    fig.savefig(oname,format='png')
     plt.close(fig)
     
