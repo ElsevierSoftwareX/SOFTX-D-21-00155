@@ -244,8 +244,8 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r'\chi^2='+str(chisq))
     
     # set the text of the axes
-    grph.xlabel('q  (1/Angstroms)')
-    grph.ylabel('Intensity  (1/cm)')
+    grph.set_xlabel('q  (1/Angstroms)')
+    grph.set_ylabel('Intensity  (1/cm)')
     
     # plot the data
     grph.plot(d.x, d.y, 'ko', yerr=d.dy, uplims = True, lolims = True)
