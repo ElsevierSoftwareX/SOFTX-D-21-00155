@@ -71,12 +71,12 @@ def main():
     conv_conf = modelconfig.convert_conf(f)
     
     # print out the results
-    for i,p in enumerate(modelConf.params):
+    for i,p in enumerate(conv_conf.params):
 		print("\t\tparameters name:  " + str(p.name) + " value: " + str(p.val))
 	
-	if modelConf.sq is not None:
-		print("\tstructure factor:  " + modelConf.sq.type)
-		for i,sqp in enumerate(modelConf.sq.params):
+	if conv_conf.sq is not None:
+		print("\tstructure factor:  " + conv_conf.sq.type)
+		for i,sqp in enumerate(conv_conf.sq.params):
 			print("\t\tparameters name:  " + str(sqp.name) + " value: " + str(sqp.val))
 			
 if __name__=="__main__":
