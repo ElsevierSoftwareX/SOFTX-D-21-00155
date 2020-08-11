@@ -63,6 +63,7 @@ def main():
     # create a couple instances of the model configuration class to hold things
     f = modelconfig.ModelConfig(modelConf.name,modelConf.category,modelConf.params,modelConf.sq)
     conv_conf = modelconfig.ModelConfig(modelConf.name,modelConf.category,modelConf.params,modelConf.sq)
+    cur = modelconfig.ModelConfig(modelConf.name,modelConf.category,modelConf.params,modelConf.sq)
     
     # then call the function that will create a single random model
     f = engine.define_model(1,modconf,10.0,1.0,cur)
