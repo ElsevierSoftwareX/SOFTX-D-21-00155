@@ -214,7 +214,7 @@ def outputSetRes(conf, res):
                     fig = plt.figure()
                     grph = fig.add_subplot(1,1,1)
                     grph.set_autoscale_on(True)
-                    grph.plot(vals[i],vals[j],'bo')
+                    grph.plot(vals[i],vals[j],'ko')
                     grph.set_title(str(names[j])+" vs. "+str(names[i]))
                     
                     oname = str(conf.output)+"_"+str(names[j])+"_"+str(names[i])+".png"
@@ -233,7 +233,25 @@ def outputSetRes(conf, res):
             oname = str(conf.output)+"_"+str(names[i])+"_histogram.png"
             fig.savefig(oname,format="png")
             plt.close(fig)
-
+            
+    # output plots of the values of the parameters vs. chi-squared
+    for i in range(0, len(names)):
+        if varkinds[i] not in ["fixed"]:
+            fig = plt.figure()
+            grph = fig.add_subplot(1,1,1)
+            grph.set_autoscale_on(True)
+            grph.set_title(str(names[i])+" vs. "+r"$\chi^2$")
+            grph.set_xlabel(str(names[i]))
+            grph.set_ylabel(r"$\chi^2$")
+            
+            # finally, add the data
+            grph.plot(chisq,vals[i],'ko')
+            
+            oname = str(conf.output)+"_"+str(names[i])+"_chisq.png"
+            fig.savefig(oname,format="png")
+            plt.close(fig)
+        
+    
     
 def outputFitCurve(conf, d, m, mnum, chisq):
     fig = plt.figure()
