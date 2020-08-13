@@ -247,7 +247,7 @@ def outputSetRes(conf, res):
             # finally, add the data
             grph.plot(chisq,vals[i],'ko')
             
-            oname = str(conf.output)+"_"+str(names[i])+"_chisq.pnd"
+            oname = str(conf.output)+"_"+str(names[i])+"_chisq.png"
             fig.savefig(oname,format="png")
             plt.close(fig)
         
