@@ -237,7 +237,7 @@ def outputSetRes(conf, res):
     # output plots of the values of the parameters vs. chi-squared
     for i in range(0, len(names)):
         if varkinds[i] not in ["fixed"]:
-            fig = plt.figure()2
+            fig = plt.figure()
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
             grph.set_title(str[names[i]]+" vs. "+r"$\chi^2$")
