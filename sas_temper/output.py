@@ -241,7 +241,7 @@ def outputSetRes(conf, res):
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
             grph.set_title(str[names[i]]+" vs. "+r"$\chi^2$")
-            grph.set_xlabel(str[names[i])
+            grph.set_xlabel(str(names[i]))
             grph.set_ylabel(r"$\chi^2$")
             
             # finally, add the data
