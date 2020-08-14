@@ -267,7 +267,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.  No errorbars here
-    grph.loglog(d.x, d.y, marker='o', mec='k', mfc='w', linecolor='w')
+    grph.loglog(d.x, d.y, marker='o', mec='k', mfc='w', color='w')
     grph.loglog(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
