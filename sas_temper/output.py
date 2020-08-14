@@ -227,7 +227,7 @@ def outputSetRes(conf, res):
             fig = plt.figure(figsize = [4,4], dpi=100)
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
-            grph.hist(vals[i],bins=int(0.5*conf.models))
+            grph.hist(vals[i],bins=int(0.3*conf.models),color = 'r', rwidth=0.9)
             grph.set_title("Histogram of "+str(names[i]))
             
             oname = str(conf.output)+"_"+str(names[i])+"_histogram.png"
@@ -241,8 +241,8 @@ def outputSetRes(conf, res):
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
             grph.set_title(str(names[i])+" vs. "+r"$\chi^2$")
-            grph.set_xlabel(str(names[i]))
-            grph.set_ylabel(r"$\chi^2$")
+            grph.set_ylabel(str(names[i]))
+            grph.set_xlabel(r"$\chi^2$")
             
             # finally, add the data
             grph.plot(chisq,vals[i],'ko')
@@ -267,7 +267,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     grph.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.  No errorbars here
-    grph.loglog(d.x, d.y, 'ko')
+    grph.loglog(d.x, d.y, marker='o', mec='k', mfc='w', color='w')
     grph.loglog(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
