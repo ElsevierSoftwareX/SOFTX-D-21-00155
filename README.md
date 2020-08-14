@@ -35,3 +35,8 @@ An example is available in the `examples` directory:
 cd examples
 sas_temper test_sphere_nz.yaml
 ```
+
+
+Research sponsored by the Laboratory Directed Research and Development
+Program of Oak Ridge National Laboratory, managed by UT-Battelle, LLC, for the 
+U. S. Department of Energy.
