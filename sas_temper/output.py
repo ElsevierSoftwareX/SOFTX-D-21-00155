@@ -228,7 +228,7 @@ def outputSetRes(conf, res):
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
             grph.ylabel("Probability")
-            grph.hist(vals[i],bins=int(0.3*conf.models),rwidth=0.9,density=True)
+            grph.hist(vals[i],bins=int(0.3*conf.models),color = 'r', rwidth=0.9,density=True)
             grph.set_title("Histogram of "+str(names[i]))
             
             oname = str(conf.output)+"_"+str(names[i])+"_histogram.png"
