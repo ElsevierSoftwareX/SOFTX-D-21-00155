@@ -18,7 +18,7 @@ conda env create -f sas_temper_env.yaml
 To activate the environment so you can run sas_temper, type the following.
 
 ```
-conda activate sas_temper_env
+conda activate sas_temper
 ```
 
 **Installation**
