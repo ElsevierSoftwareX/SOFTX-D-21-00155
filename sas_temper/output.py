@@ -159,7 +159,6 @@ def outputSetRes(conf, res):
     ave = np.empty(parms,dtype=np.float64)
     std = np.empty(parms,dtype=np.float64)
     cor = np.empty([parms,parms],dtype=np.float64)
-    print("About to do some of the analysis calculation calls to numpy")
     for i in range(0,parms):
         ave[i] = np.average(vals[i])
         std[i] = np.std(vals[i])
