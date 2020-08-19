@@ -225,9 +225,9 @@ def outputSetRes(conf, res):
     for i in range(0,len(names)):
         if varkinds[i] not in ["fixed"]:
             fig = plt.figure(figsize = [4,4], dpi=100)
-            fig.set_xticklabels(rotation=90)
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
+            grph.set_xticklabels(rotation=90)
             grph.hist(vals[i],color = 'r', rwidth=0.9)
             grph.set_title("Histogram of "+str(names[i]))
             
