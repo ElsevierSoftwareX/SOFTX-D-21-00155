@@ -1264,6 +1264,35 @@ polymer_excl_volume:
         volfraction:
             linear: [0.0, 0.50]
 
+polymer_micelle:
+    name: polymer_micelle
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background:
+        fixed: [0.001]
+    ndensity:
+        linear: [0.1 100.0]
+    v_core:
+        linear: [10000.0, 100000.0]
+    v_corona:
+        linear: [10000.0, 100000.0]
+    sld_solvent:
+        linear: [4.0, 7.0]
+    sld_core:
+        linear: [1.0, 3.0]
+    sld_corona:
+        linear: [1.0, 2.0]
+    radius_core:
+        linear: [1.0, 2.0]
+        coupled: [rg]
+    rg:
+        linear: [10.0, 50.0]
+    d_penetration:
+        linear: [0.0, 1.0]
+    n_aggreg:
+        integer: [5, 15]
+    
 porod:
     name: porod
     Category: shape-independent
