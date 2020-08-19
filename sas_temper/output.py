@@ -227,7 +227,6 @@ def outputSetRes(conf, res):
             fig = plt.figure(figsize = [4,4], dpi=100)
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
-            grph.set_xticklabels(rotation=90)
             grph.hist(vals[i],color = 'r', rwidth=0.9)
             grph.set_title("Histogram of "+str(names[i]))
             
