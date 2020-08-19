@@ -225,9 +225,10 @@ def outputSetRes(conf, res):
     for i in range(0,len(names)):
         if varkinds[i] not in ["fixed"]:
             fig = plt.figure(figsize = [4,4], dpi=100)
+            fig.set_xticklabels(rotation=90)
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
-            grph.hist(vals[i],bins=int(0.3*conf.models),color = 'r', rwidth=0.9)
+            grph.hist(vals[i],color = 'r', rwidth=0.9)
             grph.set_title("Histogram of "+str(names[i]))
             
             oname = str(conf.output)+"_"+str(names[i])+"_histogram.png"
@@ -240,13 +241,12 @@ def outputSetRes(conf, res):
             fig = plt.figure()
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
-            grph.set_xticklabels(rotation=90)
-            grph.set_title(str(names[i])+" vs. "+r"$\chi^2$")
-            grph.set_ylabel(str(names[i]))
-            grph.set_xlabel(r"$\chi^2$")
+            grph.set_title(r"$\chi^2$"+" vs. "+str(names[i]))
+            grph.set_xlabel(str(names[i]))
+            grph.set_ylabel(r"$\chi^2$")
             
             # finally, add the data
-            grph.plot(chisq,vals[i],'ko')
+            grph.plot(vals[i],chisq,'ko')
             
             oname = str(conf.output)+"_"+str(names[i])+"_chisq.png"
             fig.savefig(oname,format="png")
