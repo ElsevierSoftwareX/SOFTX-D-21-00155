@@ -159,7 +159,6 @@ def outputSetRes(conf, res):
     ave = np.empty(parms,dtype=np.float64)
     std = np.empty(parms,dtype=np.float64)
     cor = np.empty([parms,parms],dtype=np.float64)
-    print("About to do some of the analysis calculation calls to numpy")
     for i in range(0,parms):
         ave[i] = np.average(vals[i])
         std[i] = np.std(vals[i])
@@ -227,7 +226,7 @@ def outputSetRes(conf, res):
             fig = plt.figure(figsize = [4,4], dpi=100)
             grph = fig.add_subplot(1,1,1)
             grph.set_autoscale_on(True)
-            grph.hist(vals[i],color = 'r', rwidth=0.9)
+            grph.hist(vals[i],bins=5,color = 'r', rwidth=0.9)
             grph.set_title("Histogram of "+str(names[i]))
             
             oname = str(conf.output)+"_"+str(names[i])+"_histogram.png"
