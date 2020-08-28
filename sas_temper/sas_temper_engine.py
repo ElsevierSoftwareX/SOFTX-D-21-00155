@@ -178,7 +178,10 @@ def define_model(schedule, modconf, temperature, rval, current):
         # pick a value from within the constrained range
         for i, p in enumerate(current.params):
             move = frand(-0.1*rval*p.val,0.1*rval*p.val)
-            local.params[i].val = p.val + move
+            if p.kind in ["integer"]:
+                local.params[i].val = int(p.val + move)
+            else:
+                local.params[i].val = p.val + move
                 
             if local.params[i].val>modconf.params[i].max:
                 local.params[i].val = modconf.params[i].max
@@ -201,7 +204,10 @@ def define_model(schedule, modconf, temperature, rval, current):
         if local.sq is not None:        
             for i, sqp in enumerate(current.sq.params):
                 move = frand(-0.1*rval*sqp.val,0.1*rval*sqp.val)
-                local.sq.params[i].val = sqp.val + move
+                if sqp.kind in ["integer"]:
+                    local.sq.params[i].val = int(sqp.val + move)
+                else:
+                    local.sq.params[i].val = sqp.val + move
                 
                 if local.sq.params[i].val>modconf.sq.params[i].max:
                     local.sq.params[i].val = modconf.sq.params[i].max
