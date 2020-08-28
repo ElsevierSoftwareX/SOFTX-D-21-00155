@@ -43,12 +43,18 @@ def outputSingleRes(conf, d, m, mnum, res):
         for i, p in enumerate(lres.params):
             if p.polydispersity is None:
                 if p.kind not in ["fixed"]:
-                    buff = "# "+str(p.name)+ " = %6.6f +/- %6.6f\n" %(p.val, p.unc)
+                    if p.kind in ["integer"]:
+                        buff = "# "+str(p.name)+ " = %6d +/- %6.6f\n" %(p.val, p.unc)
+                    else:
+                        buff = "# "+str(p.name)+ " = %6.6f +/- %6.6f\n" %(p.val, p.unc)
                 else:
                     buff = "# "+str(p.name)+ " = %6.6f; fixed\n" %(p.val)
             else: 
                 if p.kind not in ["fixed"]:
-                    buff = "# "+str(p.name)+ " = %6.6f +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
+                    if p.kind in ["integer"]:
+                        buff = "# "+str(p.name)+ " = %6d +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
+                    else:
+                        buff = "# "+str(p.name)+ " = %6.6f +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
                 else:
                     # the polydispersity parameter cannot be "fixed" at present
                     buff = "# "+str(p.name)+ " = %6.6f; fixed, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
@@ -66,12 +72,18 @@ def outputSingleRes(conf, d, m, mnum, res):
             for i, sqp in enumerate(lres.sq.params):
                 if sqp.polydispersity is None:
                     if sqp.kind not in ["fixed"]:
-                        buff = "# " + str(sqp.name) + " = %6.6f +/- %6.6f \n" %(sqp.val, sqp.unc)
+                        if sqp.kind in ["integer"]:
+                            buff = "# " + str(sqp.name) + " = %6d +/- %6.6f \n" %(sqp.val, sqp.unc)
+                        else:
+                            buff = "# " + str(sqp.name) + " = %6.6f +/- %6.6f \n" %(sqp.val, sqp.unc)
                     else:
                         buff = "# " + str(sqp.name) + " = %6.6f; fixed \n" %(sqp.val)
                 else: 
                     if sqp.kind not in ["fixed"]:
-                        buff = "# " + str(sqp.name) + " = %6.6f +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
+                        if sqp.kind in ["integer"]:
+                            buff = "# " + str(sqp.name) + " = %6d +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
+                        else:
+                            buff = "# " + str(sqp.name) + " = %6.6f +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
                     else:
                         # the polydispersity parameter cannot be "fixed" at present
                         buff = "# " + str(sqp.name) + " = %6.6f; fixed, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
@@ -198,7 +210,10 @@ def outputSetRes(conf, res):
             buff = ""
             buff += "%6.6f\t" %(chisq[i])
             for j in range(0,parms):
-                buff += "%6.6f\t" %(vals[j][i])
+                if varkinds[j] in ["integer"]:
+                    buff += "%6d\t" %(vals[j][i])
+                else:
+                    buff += "%6.6f\t" %(vals[j][i])
             buff += "\n"
             f.write(buff)
             
