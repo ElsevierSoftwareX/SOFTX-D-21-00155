@@ -155,7 +155,7 @@ def define_model(schedule, modconf, temperature, rval, current):
     
     if schedule is 1:
         for i, p in enumerate(modconf.params):
-            if p.kind=="integer":
+            if p.kind in ["integer"]:
                 local.params[i].val = int(frand(p.min,p.max+1.0))
             else:
                 local.params[i].val = frand(p.min,p.max)
@@ -166,7 +166,7 @@ def define_model(schedule, modconf, temperature, rval, current):
             
         if local.sq is not None:
             for i, sqp in enumerate(modconf.sq.params):
-                if sqp.kind=="integer":
+                if sqp.kind in ["integer"]:
                     local.sq.params[i].val = int(frand(sqp.min,sqp.max+1.0))
                 else:
                     local.sq.params[i].val = frand(sqp.min,sqp.max)
@@ -178,7 +178,10 @@ def define_model(schedule, modconf, temperature, rval, current):
         # pick a value from within the constrained range
         for i, p in enumerate(current.params):
             move = frand(-0.1*rval*p.val,0.1*rval*p.val)
-            local.params[i].val = p.val + move
+            if p.kind in ["integer"]:
+                local.params[i].val = int(p.val + move)
+            else:
+                local.params[i].val = p.val + move
                 
             if local.params[i].val>modconf.params[i].max:
                 local.params[i].val = modconf.params[i].max
@@ -188,7 +191,7 @@ def define_model(schedule, modconf, temperature, rval, current):
             if p.polydispersity is not None:
                 move = frand(-0.1*rval*p.polydispersity.val,0.1*rval*p.polydispersity.val)
                 #catch the integer types
-                if p.kind=="integer":
+                if p.kind in ["integer"]:
                     local.params[i].polydispersity.val = int(p.polydispersity.val + move)
                 else:
                     local.params[i].polydispersity.val = p.polydispersity.val + move
@@ -201,7 +204,10 @@ def define_model(schedule, modconf, temperature, rval, current):
         if local.sq is not None:        
             for i, sqp in enumerate(current.sq.params):
                 move = frand(-0.1*rval*sqp.val,0.1*rval*sqp.val)
-                local.sq.params[i].val = sqp.val + move
+                if sqp.kind in ["integer"]:
+                    local.sq.params[i].val = int(sqp.val + move)
+                else:
+                    local.sq.params[i].val = sqp.val + move
                 
                 if local.sq.params[i].val>modconf.sq.params[i].max:
                     local.sq.params[i].val = modconf.sq.params[i].max
@@ -210,7 +216,7 @@ def define_model(schedule, modconf, temperature, rval, current):
                     
                 if sqp.polydispersity is not None:
                     move = frand(-0.1*rval*sqp.polydispersity.val,0.1*rval*sqp.polydispersity.val)
-                    if sqp.kind=="integer":
+                    if sqp.kind in ["integer"]:
                         local.sq.params[i].polydispersity.val = int(sqp.polydispersity.val + move)
                     else:
                         local.sq.params[i].polydispersity.val = sqp.polydispersity.val + move

@@ -35,10 +35,16 @@ class Param(object):
             err_message = "The parameter type " + str(kind) + " specified for parameter " + str(name) + " is not valid"
             raise Exception(err_message)
         
-        self.min = np.float64(min)            # the minimum value
-        self.max = np.float64(max)            # the maximum value
-        self.val = 0.5*(self.min + self.max)
-        self.unc = 0.0
+        if kind in ["integer"]:
+            self.min = min
+            self.max = max
+            self.val = int(0.5*self.min+self.max)
+            self.unc = 0.0
+        else:
+            self.min = np.float64(min)            # the minimum value
+            self.max = np.float64(max)            # the maximum value
+            self.val = 0.5*(self.min + self.max)
+            self.unc = 0.0
             
         if coupled is not None:
             self.coupled = str(coupled)
