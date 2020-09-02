@@ -131,8 +131,8 @@ def sa_engine(fconf, modconf, d):
                 
             iters = iters + 1
             
-            noise = "schedule " + str(schedule) + "; iteration " + str(iters)
-            print(noise)
+            #noise = "schedule " + str(schedule) + "; iteration " + str(iters)
+            #print(noise)
         
         # we drop the temperature, tighten the range and increase schedule
         temp = temp*fconf.temp_rate
