@@ -129,7 +129,7 @@ def sa_engine(fconf, modconf, d):
             if hit:
                 cur = copy.deepcopy(f)
                 
-            iters += 1
+            iters = iters + 1
         
         # we drop the temperature, tighten the range and increase schedule
         temp = temp*fconf.temp_rate
