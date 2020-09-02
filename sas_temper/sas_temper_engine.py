@@ -134,7 +134,7 @@ def sa_engine(fconf, modconf, d):
         # we drop the temperature, tighten the range and increase schedule
         temp = temp*fconf.temp_rate
         r = r*fconf.param_rate
-        schedule += 1
+        schedule = schedule + 1
     
     # as the final step, we estimate the uncertainties with the jacobian
     f = copy.deepcopy(fbest)
