@@ -130,14 +130,15 @@ def sa_engine(fconf, modconf, d):
                 cur = copy.deepcopy(f)
                 
             iters = iters + 1
+            
+            noise = "schedule " + str(schedule) + "; iteration " + str(iters)
+            print(noise)
         
         # we drop the temperature, tighten the range and increase schedule
         temp = temp*fconf.temp_rate
         r = r*fconf.param_rate
         schedule = schedule + 1
         
-        noise = "schedule " + str(schedule) + "; iteration " + str(iters)
-        print(noise)
     
     # as the final step, we estimate the uncertainties with the jacobian
     f = copy.deepcopy(fbest)
