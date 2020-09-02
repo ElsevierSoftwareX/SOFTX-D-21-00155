@@ -92,44 +92,44 @@ def sa_engine(fconf, modconf, d):
     schedule = 1
     hit = False
     while schedule <= fconf.temperatures:
-		iters = 1
-		
-		while iters <= fconf.iterations:
-			#define the model to test
-			f = define_model(schedule,modconf,temp,r,cur)
-			
-			#calculate the profiles
-			if d.dx is None:
-				model = sas_calc.calc_profile_usm(d,f)
-			else:
-				model_usm = sas_calc.calc_profile_usm(d,f)
-				model = sas_calc.calc_profile(d,f,model_usm)
-				
-			f.chisq = sas_calc.chisq(f,d,model)
-			
-			if f.chisq < fbest.chisq:
-				hit = True
-			
-				# we have found our new best overall
-				if f.chisq < bchi:
-					bchi = f.chisq
-					
-					fbest = copy.deepcopy(f)
-					best_model = copy.deepcopy(model)
-					best_model_usm = copy.deepcopy(model_usm)
+        iters = 1
+        
+        while iters <= fconf.iterations:
+            #define the model to test
+            f = define_model(schedule,modconf,temp,r,cur)
+            
+            #calculate the profiles
+            if d.dx is None:
+                model = sas_calc.calc_profile_usm(d,f)
+            else:
+                model_usm = sas_calc.calc_profile_usm(d,f)
+                model = sas_calc.calc_profile(d,f,model_usm)
                 
-			else:
-				energy = f.chisq - cur.chisq
-				val = m.exp(-1.0*energy/temp)
-				if frand(0.0,1.0) < val:
-					hit = True
-				else:
-					hit = False
+            f.chisq = sas_calc.chisq(f,d,model)
+            
+            if f.chisq < fbest.chisq:
+                hit = True
+            
+                # we have found our new best overall
+                if f.chisq < bchi:
+                    bchi = f.chisq
+                    
+                    fbest = copy.deepcopy(f)
+                    best_model = copy.deepcopy(model)
+                    best_model_usm = copy.deepcopy(model_usm)
                 
-			if hit:
-				cur = copy.deepcopy(f)
-				
-			iters += 1
+            else:
+                energy = f.chisq - cur.chisq
+                val = m.exp(-1.0*energy/temp)
+                if frand(0.0,1.0) < val:
+                    hit = True
+                else:
+                    hit = False
+                
+            if hit:
+                cur = copy.deepcopy(f)
+                
+            iters += 1
         
         # we drop the temperature, tighten the range and increase schedule
         temp = temp*fconf.temp_rate
