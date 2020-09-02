@@ -12,6 +12,7 @@ Oak Ridge National Laboratory, 2020
 import numpy as np
 import math as m
 import copy
+import time
 
 import sas_temper.modelconfig as modelconfig
 import sas_temper.sas_temper_config as config
@@ -32,6 +33,8 @@ def sa_control(fconf, modconf, d):
     # this is the number of refinements to do - yes, it is a 'magic number'
     refines = 5
     
+    st_time = time.time()
+    
     # the number of refinement iterations to do
     for j in range(0,refines) :
         for i in range(0,fconf.models):
@@ -49,7 +52,12 @@ def sa_control(fconf, modconf, d):
         if res[k].chisq < best:
             hit = k
             best = res[k].chisq
-            
+    end_time = time.time()
+    
+    dif_time = end_time-st_time
+    junk = "Time for a single model = " + str(dif_time)
+    print(junk)
+    
     return res[hit], mprof[hit], mprof_usm[hit]
     
 
