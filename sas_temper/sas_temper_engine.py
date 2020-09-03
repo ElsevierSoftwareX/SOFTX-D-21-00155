@@ -24,20 +24,22 @@ import sas_temper.sas_calc as sas_calc
 # modconf is the model to be used and the parameter ranges
 # d is the input data to be fit against
 def sa_control(fconf, modconf, d):
-    res = np.empty(fconf.models, "object")            # the parameters returned from the fitting
-    mprof = np.empty(fconf.models, "object")        # the profiles returned from the fitting
-    mprof_usm = np.empty(fconf.models, "object")    # the unsmeared profiles returned from the fitting - may be empty
+    # this is the number of refinements to do and how many models to use - yes, they are 'magic numbers'
+    refines = 5
+    refine_models = 10
+    
+    # set  up the memory
+    res = np.empty(refine_models, "object")            # the parameters returned from the fitting
+    mprof = np.empty(refine_models, "object")        # the profiles returned from the fitting
+    mprof_usm = np.empty(refine_models, "object")    # the unsmeared profiles returned from the fitting - may be empty
     
     localconf = modelconfig.ModelConfig(modconf.name,modconf.category,modconf.params,modconf.sq)
     
-    # this is the number of refinements to do - yes, it is a 'magic number'
-    refines = 5
-    
-    st_time = time.time()
+    # st_time = time.time()
     
     # the number of refinement iterations to do
     for j in range(0,refines) :
-        for i in range(0,fconf.models):
+        for i in range(0,refine_models):
             if j is 0:
                 res[i],mprof[i],mprof_usm[i] = sa_engine(fconf,modconf,d)
             else:
@@ -48,15 +50,15 @@ def sa_control(fconf, modconf, d):
     
     best = 1000000000.00
     hit = 0
-    for k in range(0, fconf.models):
+    for k in range(0, refine_models):
         if res[k].chisq < best:
             hit = k
             best = res[k].chisq
-    end_time = time.time()
     
-    dif_time = end_time-st_time
-    junk = "Time for a single model = " + str(dif_time)
-    print(junk)
+    #end_time = time.time()
+    #dif_time = end_time-st_time
+    #junk = "Time for a single model = " + str(dif_time)
+    #print(junk)
     
     return res[hit], mprof[hit], mprof_usm[hit]
     
