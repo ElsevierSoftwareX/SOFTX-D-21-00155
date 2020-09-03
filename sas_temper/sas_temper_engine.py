@@ -46,7 +46,7 @@ def sa_control(fconf, modconf, d):
                 res[i],mprof[i],mprof_usm[i] = sa_engine(fconf,localconf,d)
             
         # refine the ranges to start over
-        localconf = sa_refine(fconf.models, res)
+        localconf = sa_refine(refine_models, res)
     
     best = 1000000000.00
     hit = 0
