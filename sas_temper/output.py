@@ -174,7 +174,11 @@ def outputSetRes(conf, res):
     for i in range(0,parms):
         ave[i] = np.average(vals[i])
         std[i] = np.std(vals[i])
-    cor = np.corrcoef(vals,y=None,rowvar=True)
+    
+    #this is to address a bad division that does not crash the code
+    with np.errstate(divide='ignore', invalid='ignore'):
+        cor = np.corrcoef(vals,y=None,rowvar=True)
+        
     #this gets rid of junk values when parameters are fixed
     for i in range(0,parms):
         for j in range(0,parms):
