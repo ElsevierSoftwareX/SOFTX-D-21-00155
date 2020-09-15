@@ -411,10 +411,10 @@ def est_uncerts(d, f, modconf, best_model):
             eps.params[i].val = step
         
         tmp = copy.deepcopy(f)
-        tmp.params[i].val = f.params[i].val + eps.params[i].val
+        tmp.params[i].val = loc.params[i].val + eps.params[i].val
         print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(f.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
         if tmp.params[i].val >= modconf.params[i].max:
-            tmp.params[i].val = f.params[i].val - eps.params[i].val
+            tmp.params[i].val = loc.params[i].val - eps.params[i].val
             
         stepped.append(tmp)
         steps.append(eps.params[i].val)
@@ -429,9 +429,9 @@ def est_uncerts(d, f, modconf, best_model):
                 eps.sqp.params[j].val = step
                 
             tmp = copy.deepcopy(f)
-            tmp.sq.params[j].val = f.sq.params[j].val + eps.sq.params[j].val
+            tmp.sq.params[j].val = loc.sq.params[j].val + eps.sq.params[j].val
             if tmp.sq.params[j].val >= modconf.sq.params[j].max:
-                tmp.sq.params[j].val = f.sq.params[j].val - eps.sq.params[j].val
+                tmp.sq.params[j].val = loc.sq.params[j].val - eps.sq.params[j].val
                 
             stepped.append(tmp)
             steps.append(eps.sq.params[j].val)
@@ -444,9 +444,9 @@ def est_uncerts(d, f, modconf, best_model):
                 eps.params[i].polydispersity.val = step
             
             tmp = copy.deepcopy(f)
-            tmp.params[i].polydispersity.val = f.params[i].polydispersity.val + eps.params[i].polydispersity.val
+            tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val + eps.params[i].polydispersity.val
             if tmp.params[i].polydispsersity.val >= modconf.params[i].polydispersity.max:
-                tmp.params[i].polydispersity.val = f.params[i].polydispersity.val - eps.params[i].polydispersity.val
+                tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val - eps.params[i].polydispersity.val
                 
             stepped.append(tmp)
             steps.append(eps.params[i].polydispersity.val)
@@ -459,9 +459,9 @@ def est_uncerts(d, f, modconf, best_model):
                     eps.sq.params[j].polydispersity.val = step
                     
                 tmp = copy.deepcopy(f)
-                tmp.sq.params[j].polydispersity.val = f.sq.params[j].polydispersity.val + eps.sq.params[j].polydispersity.val
+                tmp.sq.params[j].polydispersity.val = loc.sq.params[j].polydispersity.val + eps.sq.params[j].polydispersity.val
                 if tmp.sq.params[j].polydispersity.val >= modconf.sq.params[j].polydispersity.max:
-                    tmp.sq.params[j].polydispersity.val = f.sq.params[j].polydispersity.val - eps.sq.params[j].polydispersity.val
+                    tmp.sq.params[j].polydispersity.val = loc.sq.params[j].polydispersity.val - eps.sq.params[j].polydispersity.val
                     
                 stepped.append(tmp)
                 steps.append(eps.sp.params[j].polydispersity.val)
