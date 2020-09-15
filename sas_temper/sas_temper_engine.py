@@ -478,7 +478,7 @@ def est_uncerts(d, f, modconf, best_model):
         
         for z in range(0,len(best_model.y)):
             if z==0:
-                print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(d.dy[z]*steps[w]))
+                print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]))
             tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
         JT.append(tprof.y)
     
