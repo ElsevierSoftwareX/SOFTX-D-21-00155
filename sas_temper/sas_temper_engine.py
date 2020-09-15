@@ -496,6 +496,8 @@ def est_uncerts(d, f, modconf, best_model):
     
     # Invert it to get the covariance matrix
     Cov = np.linalg.inv(Hess)
+    print("Covariance")
+    print(Cov)
     
     # the diagonal should be only as long as the number of parameters
     errs = np.sqrt(np.diag(Cov))
