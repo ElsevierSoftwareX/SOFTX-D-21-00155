@@ -413,9 +413,9 @@ def est_uncerts(d, f, modconf, best_model):
         
         tmp = copy.deepcopy(f)
         tmp.params[i].val = f.params[i].val + eps.params[i].val
+        print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(f.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
         if tmp.params[i].val >= modconf.params[i].max:
             tmp.params[i].val = f.params[i].val - eps.params[i].val
-            print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(f.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
             
         stepped.append(tmp)
         steps.append(eps.params[i].val)
