@@ -474,7 +474,7 @@ def est_uncerts(d, f, modconf, best_model):
             lprof_usm = sas_calc.calc_profile_usm(d, stepped[w]) 
             lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
         
-        JT.append((lprof.y-best_model.y)/steps[w])
+        JT.append((lprof.y-best_model.y)*(lprof.y-best_model.y)/(d.dy*d.dy*steps[w])
     
     #this is the matrix that we want
     J_T = np.vstack(JT)
@@ -492,7 +492,7 @@ def est_uncerts(d, f, modconf, best_model):
     print(Cov)
     
     # the diagonal should be only as long as the number of parameters
-    errs = np.sqrt(np.diag(Cov))/f.chisq
+    errs = np.sqrt(np.diag(Cov))
 
     # these final values need to be inserted into the structure to be returned
     # note that fixed parameters have their uncertainty set to 0.0 here to avoid
