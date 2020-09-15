@@ -476,7 +476,7 @@ def est_uncerts(d, f, modconf, best_model):
             lprof_usm = sas_calc.calc_profile_usm(d, stepped[w]) 
             lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
         
-        for z in range(0,len(best_model.y)):
+        for z in range(0,len(tprof.y)):
             tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
             if z==0:
                 print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
