@@ -402,13 +402,13 @@ def est_uncerts(d, f, modconf, best_model):
     
     # preparation work for calculating the Jacobian matrix from the derivative
     step = 0.01
+    dof = 0
     for i,p in enumerate(modconf.params):
         if p.kind not in ["fixed"]:
             eps.params[i].val = step*(p.max - p.min)
             if eps.params[i].val == 0.0:
                 eps.params[i].val = step
-        #else:
-        #    eps.params[i].val = 0.00
+            dof = dof + 1
         
         tmp = copy.deepcopy(f)
         tmp.params[i].val = f.params[i].val + eps.params[i].val
@@ -424,13 +424,12 @@ def est_uncerts(d, f, modconf, best_model):
                 eps.sq.params[j].val = step*(sqp.max-sqp.min)
                 if eps.sq.params[j].val == 0.0:
                     eps.sqp.params[j].val = step
-            #else:
-            #    eps.sqp.params[j].val = 0.00
+                dof = dof + 1
                 
             tmp = copy.deepcopy(f)
             tmp.sq.params[j].val = f.sq.params[j].val + eps.sq.params[j].val
-            #if tmp.sq.params[j].val >= modconf.sq.params[j].max:
-            #    tmp.sq.params[j].val = f.sq.params[j].val - eps.sq.params[j].val
+            if tmp.sq.params[j].val >= modconf.sq.params[j].max:
+                tmp.sq.params[j].val = f.sq.params[j].val - eps.sq.params[j].val
                 
             stepped.append(tmp)
             steps.append(eps.sq.params[j].val)
@@ -441,8 +440,6 @@ def est_uncerts(d, f, modconf, best_model):
             eps.params[i].polydispersity.val = step*(p.polydispersity.max-p.polydispersity.min)
             if eps.params[i].polydispersity.val == 0.00:
                 eps.params[i].polydispersity.val = step
-            #else:
-            #    eps.params[i].polydispersity.val = 0.00
             
             tmp = copy.deepcopy(f)
             tmp.params[i].polydispersity.val = f.params[i].polydispersity.val + eps.params[i].polydispersity.val
@@ -458,8 +455,6 @@ def est_uncerts(d, f, modconf, best_model):
                 eps.sq.params[j].polydispersity.val = step*(modconf.sq.params[j].polydispersity.max-modconf.sq.params[j].polydispersity.min)
                 if eps.sq.params[j].polydispersity.val == 0.00:
                     eps.sq.params[j].polydispersity.val = step
-                #else:
-                #    eps.sq.params[j].polydispersity.val = 0.00
                     
                 tmp = copy.deepcopy(f)
                 tmp.sq.params[j].polydispersity.val = f.sq.params[j].polydispersity.val + eps.sq.params[j].polydispersity.val
@@ -479,10 +474,7 @@ def est_uncerts(d, f, modconf, best_model):
             lprof_usm = sas_calc.calc_profile_usm(d, stepped[w]) 
             lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
         
-        if abs(steps[w]) > 0.0:
-            JT.append((lprof.y-best_model.y)/steps[w])
-        else:
-            JT.append(0.00*lprof.y)
+        JT.append((lprof.y-best_model.y)/steps[w])
     
     #this is the matrix that we want
     J_T = np.vstack(JT)
@@ -500,7 +492,7 @@ def est_uncerts(d, f, modconf, best_model):
     print(Cov)
     
     # the diagonal should be only as long as the number of parameters
-    errs = np.sqrt(np.diag(Cov))
+    errs = np.sqrt(np.diag(Cov))/f.chisq
 
     # these final values need to be inserted into the structure to be returned
     # note that fixed parameters have their uncertainty set to 0.0 here to avoid
