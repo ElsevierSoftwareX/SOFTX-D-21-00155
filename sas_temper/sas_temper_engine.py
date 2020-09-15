@@ -487,10 +487,11 @@ def est_uncerts(d, f, modconf, best_model):
     #this is the matrix that we want
     J_T = np.vstack(JT)
     J = J_T.T
-    print(J)
+    # print(J)
     
     # This is an approximation of the Hessian
     Hess = np.matmul(J_T,J)
+    print("Hessian")
     print(Hess)
     
     # Invert it to get the covariance matrix
