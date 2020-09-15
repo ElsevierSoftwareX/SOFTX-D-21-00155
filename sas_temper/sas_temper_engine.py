@@ -402,7 +402,7 @@ def est_uncerts(d, f, modconf, best_model):
     tprof = sas_data.Model(d, unsmeared = False)
     
     # preparation work for calculating the Jacobian matrix from the derivative
-    step = 0.01
+    step = 0.001
     for i,p in enumerate(modconf.params):
         if p.kind not in ["fixed"]:
             eps.params[i].val = step*(p.max - p.min)
@@ -415,6 +415,7 @@ def est_uncerts(d, f, modconf, best_model):
         tmp.params[i].val = f.params[i].val + eps.params[i].val
         if tmp.params[i].val >= modconf.params[i].max:
             tmp.params[i].val = f.params[i].val - eps.params[i].val
+            print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(f.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
             
         stepped.append(tmp)
         steps.append(eps.params[i].val)
@@ -478,8 +479,8 @@ def est_uncerts(d, f, modconf, best_model):
         
         for z in range(0,len(tprof.y)):
             tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
-            if z==0:
-                print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
+            #if z==0:
+                #print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
             
         JT.append(tprof.y)
     
