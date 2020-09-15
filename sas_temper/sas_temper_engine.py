@@ -151,10 +151,9 @@ def sa_engine(fconf, modconf, d):
         
     
     # as the final step, we estimate the uncertainties with the jacobian
-    f = copy.deepcopy(fbest)
-    fbest = est_uncerts(d,f,modconf,best_model)
+    fbest_unc = est_uncerts(d,fbest,modconf,best_model)
 
-    return fbest, best_model, best_model_usm
+    return fbest_unc, best_model, best_model_usm
     
     
 # the python version of my tried and true c code
