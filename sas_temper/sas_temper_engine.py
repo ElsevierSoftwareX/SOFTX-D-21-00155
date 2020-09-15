@@ -477,9 +477,10 @@ def est_uncerts(d, f, modconf, best_model):
             lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
         
         for z in range(0,len(best_model.y)):
+            tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
             if z==0:
                 print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
-            tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
+            
         JT.append(tprof.y)
     
     #this is the matrix that we want
