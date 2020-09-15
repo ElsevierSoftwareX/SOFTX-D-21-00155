@@ -494,7 +494,7 @@ def est_uncerts(d, f, modconf, best_model):
     print(Cov)
     
     # the diagonal should be only as long as the number of parameters
-    errs = np.sqrt(np.diag(Cov))
+    errs = np.sqrt(abs(np.diag(Cov)))
 
     # these final values need to be inserted into the structure to be returned
     # note that fixed parameters have their uncertainty set to 0.0 here to avoid
