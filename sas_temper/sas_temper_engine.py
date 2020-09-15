@@ -490,6 +490,7 @@ def est_uncerts(d, f, modconf, best_model):
     
     # This is an approximation of the Hessian
     Hess = np.matmul(J_T,J)
+    print(Hess)
     
     # Invert it to get the covariance matrix
     Cov = np.linalg.inv(Hess)
