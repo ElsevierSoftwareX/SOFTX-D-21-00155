@@ -481,7 +481,7 @@ def est_uncerts(d, f, modconf, best_model):
         
         if abs(steps[w]) > 0.0:
             JT.append((lprof.y-best_model.y)/steps[w])
-        else
+        else:
             JT.append(0.00*lprof.y)
     
     #this is the matrix that we want
