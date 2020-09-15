@@ -485,7 +485,8 @@ def est_uncerts(d, f, modconf, best_model):
             JT.append(0.00*lprof.y)
     
     #this is the matrix that we want
-    J = np.vstack(JT).T
+    J_T = np.vstack(JT)
+    J = J_T.T
         
     # and we use J to calculate the covariance matrix that we need to calculate the errors.
     # this is pretty much as shown in the bumps code.
