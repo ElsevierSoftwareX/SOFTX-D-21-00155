@@ -487,19 +487,13 @@ def est_uncerts(d, f, modconf, best_model):
     #this is the matrix that we want
     J_T = np.vstack(JT)
     J = J_T.T
-        
-    # and we use J to calculate the covariance matrix that we need to calculate the errors.
-    # this is pretty much as shown in the bumps code.
-    U, S, V = np.linalg.svd(J,0)
-    # this line took a long time to understand, but it looks very efficient
-    # not sure if it really is during run time...still have to index through the mess
-    # the magic number is here from the bumps code, too.
-    S[S <= 1e-8] = 1e-8
-    # the covariance matrix is the inverse of the JT*J matrix, obtained from above
-    # see lines 241-250 of lsqerror.py of bumps for what the next line means.
-    # the description there is easy enough to follow
-    Cov = np.dot(V.T.conj()/(S ** 2), V)
-    # at least this is easy enough, it is the stderr(C) function from bumps lsqerror.py
+    
+    # This is an approximation of the Hessian
+    Hess = np.matmul(J_T,J)
+    
+    # Invert it to get the covariance matrix
+    Cov = np.linalg.inv(Hess)
+    
     # the diagonal should be only as long as the number of parameters
     errs = np.sqrt(np.diag(Cov))
 
