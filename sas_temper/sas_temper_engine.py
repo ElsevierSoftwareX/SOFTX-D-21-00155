@@ -441,7 +441,7 @@ def est_uncerts(d, f, modconf, best_model):
             eps.params[i].polydispersity.val = step*(p.polydispersity.max-p.polydispersity.min)
             if eps.params[i].polydispersity.val == 0.00:
                 eps.params[i].polydispersity.val = step
-            else
+            else:
                 eps.params[i[.polydispersity.val = 0.00
             
             tmp = copy.deepcopy(f)
@@ -458,7 +458,7 @@ def est_uncerts(d, f, modconf, best_model):
                 eps.sq.params[j].polydispersity.val = step*(modconf.sq.params[j].polydispersity.max-modconf.sq.params[j].polydispersity.min)
                 if eps.sq.params[j].polydispersity.val == 0.00:
                     eps.sq.params[j].polydispersity.val = step
-                else
+                else:
                     eps.sq.params[j].polydispersity.val = 0.00
                     
                 tmp = copy.deepcopy(f)
