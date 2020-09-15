@@ -410,9 +410,9 @@ def est_uncerts(d, f, modconf, best_model):
         else: 
             eps.params[i].val = step
         
-        tmp = copy.deepcopy(f)
+        tmp = copy.deepcopy(loc)
         tmp.params[i].val = loc.params[i].val + eps.params[i].val
-        print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(f.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
+        print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(loc.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
         if tmp.params[i].val >= modconf.params[i].max:
             tmp.params[i].val = loc.params[i].val - eps.params[i].val
             
@@ -428,7 +428,7 @@ def est_uncerts(d, f, modconf, best_model):
             else: 
                 eps.sqp.params[j].val = step
                 
-            tmp = copy.deepcopy(f)
+            tmp = copy.deepcopy(loc)
             tmp.sq.params[j].val = loc.sq.params[j].val + eps.sq.params[j].val
             if tmp.sq.params[j].val >= modconf.sq.params[j].max:
                 tmp.sq.params[j].val = loc.sq.params[j].val - eps.sq.params[j].val
@@ -443,7 +443,7 @@ def est_uncerts(d, f, modconf, best_model):
             if eps.params[i].polydispersity.val == 0.00:
                 eps.params[i].polydispersity.val = step
             
-            tmp = copy.deepcopy(f)
+            tmp = copy.deepcopy(loc)
             tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val + eps.params[i].polydispersity.val
             if tmp.params[i].polydispsersity.val >= modconf.params[i].polydispersity.max:
                 tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val - eps.params[i].polydispersity.val
@@ -458,7 +458,7 @@ def est_uncerts(d, f, modconf, best_model):
                 if eps.sq.params[j].polydispersity.val == 0.00:
                     eps.sq.params[j].polydispersity.val = step
                     
-                tmp = copy.deepcopy(f)
+                tmp = copy.deepcopy(loc)
                 tmp.sq.params[j].polydispersity.val = loc.sq.params[j].polydispersity.val + eps.sq.params[j].polydispersity.val
                 if tmp.sq.params[j].polydispersity.val >= modconf.sq.params[j].polydispersity.max:
                     tmp.sq.params[j].polydispersity.val = loc.sq.params[j].polydispersity.val - eps.sq.params[j].polydispersity.val
