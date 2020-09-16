@@ -407,11 +407,11 @@ def est_uncerts(d, f, modconf, best_model):
             if eps.params[i].val == 0.0:
                 eps.params[i].val = step
         else: 
-            eps.params[i].val = step
+            eps.params[i].val = 0.00
         
         tmp = copy.deepcopy(loc)
         tmp.params[i].val = loc.params[i].val + eps.params[i].val
-        print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(loc.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
+        # print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(loc.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
         if tmp.params[i].val >= modconf.params[i].max:
             tmp.params[i].val = loc.params[i].val - eps.params[i].val
             
@@ -425,7 +425,7 @@ def est_uncerts(d, f, modconf, best_model):
                 if eps.sq.params[j].val == 0.0:
                     eps.sqp.params[j].val = step
             else: 
-                eps.sqp.params[j].val = step
+                eps.sqp.params[j].val = 0.00
                 
             tmp = copy.deepcopy(loc)
             tmp.sq.params[j].val = loc.sq.params[j].val + eps.sq.params[j].val
