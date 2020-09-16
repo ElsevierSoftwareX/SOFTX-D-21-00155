@@ -407,7 +407,7 @@ def est_uncerts(d, f, modconf, best_model):
             if eps.params[i].val == 0.0:
                 eps.params[i].val = step
         else: 
-            eps.params[i].val = 0.00
+            eps.params[i].val = 0.01*step
         
         tmp = copy.deepcopy(loc)
         tmp.params[i].val = loc.params[i].val + eps.params[i].val
@@ -425,7 +425,7 @@ def est_uncerts(d, f, modconf, best_model):
                 if eps.sq.params[j].val == 0.0:
                     eps.sqp.params[j].val = step
             else: 
-                eps.sqp.params[j].val = 0.00
+                eps.sqp.params[j].val = 0.01*step
                 
             tmp = copy.deepcopy(loc)
             tmp.sq.params[j].val = loc.sq.params[j].val + eps.sq.params[j].val
@@ -480,10 +480,7 @@ def est_uncerts(d, f, modconf, best_model):
         
         tprof = sas_data.Model(d, unsmeared = False)
         for z in range(0,len(tprof.y)):
-            if steps[w] == 0.0:
-                tprof.y[z] = 0.00
-            else:
-                tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
+            tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
             #if z==0:
                 #print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
             
