@@ -398,7 +398,6 @@ def est_uncerts(d, f, modconf, best_model):
     # local profile for the calculation of the derivative
     lprof_usm = sas_data.Model(d, unsmeared = True)
     lprof = sas_data.Model(d, unsmeared = False)
-    tprof = sas_data.Model(d, unsmeared = False)
     
     # preparation work for calculating the Jacobian matrix from the derivative
     step = 0.01
@@ -479,6 +478,7 @@ def est_uncerts(d, f, modconf, best_model):
             lprof_usm = sas_calc.calc_profile_usm(d, stepped[w]) 
             lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
         
+        tprof = sas_data.Model(d, unsmeared = False)
         for z in range(0,len(tprof.y)):
             tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
             #if z==0:
