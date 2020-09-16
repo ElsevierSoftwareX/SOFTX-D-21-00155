@@ -468,8 +468,8 @@ def est_uncerts(d, f, modconf, best_model):
     # and this is where things get ugly
     JT = []
     for w in range(0,len(stepped)):
-        for a,m in enumerate(stepped[w].params):
-            print("stepped["+str(w)+"] parameters " + str(m.val))
+        #for a,m in enumerate(stepped[w].params):
+        #    print("stepped["+str(w)+"] parameters " + str(m.val))
             
         #calculate the profiles
         if d.dx is None:
@@ -494,8 +494,8 @@ def est_uncerts(d, f, modconf, best_model):
     
     # This is an approximation of the Hessian
     Hess = np.matmul(J_T,J)
-    # print("Hessian")
-    # print(Hess)
+    print("Hessian")
+    print(Hess)
     
     # Invert it to get the covariance matrix
     Cov = np.linalg.inv(Hess)
