@@ -480,7 +480,10 @@ def est_uncerts(d, f, modconf, best_model):
         
         tprof = sas_data.Model(d, unsmeared = False)
         for z in range(0,len(tprof.y)):
-            tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
+            if steps[w] == 0.0:
+                tprof.y[z] = 0.00
+            else:
+                tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
             #if z==0:
                 #print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
             
