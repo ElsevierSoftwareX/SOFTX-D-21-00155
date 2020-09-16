@@ -469,6 +469,9 @@ def est_uncerts(d, f, modconf, best_model):
     # and this is where things get ugly
     JT = []
     for w in range(0,len(stepped)):
+        for a,m in enumerate(stepped[w].params):
+            print("stepped["+str(w)+"] parameters " + str(m.params[a].val))
+            
         #calculate the profiles
         if d.dx is None:
             lprof = sas_calc.calc_profile_usm(d, stepped[w])
@@ -486,6 +489,7 @@ def est_uncerts(d, f, modconf, best_model):
     #this is the matrix that we want
     J_T = np.vstack(JT)
     J = J_T.T
+    print("Jacobian")
     print(J)
     
     # This is an approximation of the Hessian
