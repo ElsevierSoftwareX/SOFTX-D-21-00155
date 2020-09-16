@@ -401,7 +401,7 @@ def est_uncerts(d, f, modconf, best_model):
     tprof = sas_data.Model(d, unsmeared = False)
     
     # preparation work for calculating the Jacobian matrix from the derivative
-    step = 0.001
+    step = 0.01
     for i,p in enumerate(modconf.params):
         if p.kind not in ["fixed"]:
             eps.params[i].val = step*(p.max - p.min)
