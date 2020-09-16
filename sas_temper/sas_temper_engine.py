@@ -400,7 +400,7 @@ def est_uncerts(d, f, modconf, best_model):
     lprof = sas_data.Model(d, unsmeared = False)
     
     # preparation work for calculating the Jacobian matrix from the derivative
-    step = 0.01
+    step = 0.001
     for i,p in enumerate(modconf.params):
         if p.kind not in ["fixed"]:
             eps.params[i].val = step*(p.max - p.min)
@@ -489,17 +489,17 @@ def est_uncerts(d, f, modconf, best_model):
     #this is the matrix that we want
     J_T = np.vstack(JT)
     J = J_T.T
-    print("Jacobian")
-    print(J)
+    # print("Jacobian")
+    # print(J)
     
     # This is an approximation of the Hessian
     Hess = np.matmul(J_T,J)
-    print("Hessian")
-    print(Hess)
+    # print("Hessian")
+    # print(Hess)
     
     # Invert it to get the covariance matrix
     Cov = np.linalg.inv(Hess)
-    print("Covariance")
+    print("Covariance Matrix")
     print(Cov)
     
     # the diagonal should be only as long as the number of parameters
