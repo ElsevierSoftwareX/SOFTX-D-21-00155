@@ -470,7 +470,7 @@ def est_uncerts(d, f, modconf, best_model):
     JT = []
     for w in range(0,len(stepped)):
         for a,m in enumerate(stepped[w].params):
-            print("stepped["+str(w)+"] parameters " + str(m.params[a].val))
+            print("stepped["+str(w)+"] parameters " + str(m.val))
             
         #calculate the profiles
         if d.dx is None:
