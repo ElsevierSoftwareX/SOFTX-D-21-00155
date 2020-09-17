@@ -151,10 +151,9 @@ def sa_engine(fconf, modconf, d):
         
     
     # as the final step, we estimate the uncertainties with the jacobian
-    f = copy.deepcopy(fbest)
-    fbest = est_uncerts(d,f,best_model)
+    fbest_unc = est_uncerts(d,fbest,modconf,best_model)
 
-    return fbest, best_model, best_model_usm
+    return fbest_unc, best_model, best_model_usm
     
     
 # the python version of my tried and true c code
@@ -387,7 +386,7 @@ def modify_constraints(analyzed):
     
     return local
     
-def est_uncerts(d, f, best_model):
+def est_uncerts(d, f, modconf, best_model):
     # this is our ugly way of getting at this matrix of derivatives
     loc = modelconfig.ModelConfig(f.name,f.category,f.params,f.sq)
     loc = copy.deepcopy(f)
@@ -401,54 +400,77 @@ def est_uncerts(d, f, best_model):
     lprof = sas_data.Model(d, unsmeared = False)
     
     # preparation work for calculating the Jacobian matrix from the derivative
-    step = 0.0001
-    for i,p in enumerate(loc.params):
+    step = 0.001
+    for i,p in enumerate(modconf.params):
         if p.kind not in ["fixed"]:
-            eps.params[i].val = step*p.val
+            eps.params[i].val = step*(p.max - p.min)
             if eps.params[i].val == 0.0:
                 eps.params[i].val = step
+        else: 
+            eps.params[i].val = 0.01*step
+        
+        tmp = copy.deepcopy(loc)
+        tmp.params[i].val = loc.params[i].val + eps.params[i].val
+        # print("tmp.params[i].val = "+str(tmp.params[i].val)+"   f.params[i].val = "+str(loc.params[i].val)+"   eps.params[i].val = "+str(eps.params[i].val))
+        if tmp.params[i].val >= modconf.params[i].max:
+            tmp.params[i].val = loc.params[i].val - eps.params[i].val
             
-            tmp = copy.deepcopy(f)
-            tmp.params[i].val = f.params[i].val + eps.params[i].val
-            stepped.append(tmp)
-            steps.append(eps.params[i].val)
+        stepped.append(tmp)
+        steps.append(eps.params[i].val)
+        
     if loc.sq is not None:
-        for j, sqp in enumerate(loc.sq.params):
+        for j, sqp in enumerate(modconf.sq.params):
             if sqp.kind not in ["fixed"]:
-                eps.sq.params[j].val = step*sqp.val
+                eps.sq.params[j].val = step*(sqp.max-sqp.min)
                 if eps.sq.params[j].val == 0.0:
                     eps.sqp.params[j].val = step
+            else: 
+                eps.sqp.params[j].val = 0.01*step
                 
-                tmp = copy.deepcopy(f)
-                tmp.sq.params[j].val = f.sq.params[j].val + eps.sq.params[j].val
-                stepped.append(tmp)
-                steps.append(eps.sq.params[j].val)
-    # I don't see a cleaner way to do this...the value of the polydispersity cannot be fixed
-    for i,p in enumerate(loc.params):
+            tmp = copy.deepcopy(loc)
+            tmp.sq.params[j].val = loc.sq.params[j].val + eps.sq.params[j].val
+            if tmp.sq.params[j].val >= modconf.sq.params[j].max:
+                tmp.sq.params[j].val = loc.sq.params[j].val - eps.sq.params[j].val
+                
+            stepped.append(tmp)
+            steps.append(eps.sq.params[j].val)
+            
+    # I don't see a cleaner way to do this...the value of the polydispersity cannot be denoted "fixed"
+    for i,p in enumerate(modconf.params):
         if p.polydispersity is not None:
-            eps.params[i].polydispersity.val = step*p.polydispersity.val
+            eps.params[i].polydispersity.val = step*(p.polydispersity.max-p.polydispersity.min)
             if eps.params[i].polydispersity.val == 0.00:
                 eps.params[i].polydispersity.val = step
             
-            tmp = copy.deepcopy(f)
-            tmp.params[i].polydispersity.val = f.params[i].polydispersity.val + eps.params[i].polydispersity.val
+            tmp = copy.deepcopy(loc)
+            tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val + eps.params[i].polydispersity.val
+            if tmp.params[i].polydispsersity.val >= modconf.params[i].polydispersity.max:
+                tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val - eps.params[i].polydispersity.val
+                
             stepped.append(tmp)
             steps.append(eps.params[i].polydispersity.val)
+            
     if loc.sq is not None:
-        for j,sqp in enumerate(loc.sq.params):
+        for j,sqp in enumerate(modconf.sq.params):
             if sqp.polydispersity is not None:
-                eps.sq.params[j].polydispersity.val = step*sqp.polydispersity.val
+                eps.sq.params[j].polydispersity.val = step*(modconf.sq.params[j].polydispersity.max-modconf.sq.params[j].polydispersity.min)
                 if eps.sq.params[j].polydispersity.val == 0.00:
                     eps.sq.params[j].polydispersity.val = step
-                
-                tmp = copy.deepcopy(f)
-                tmp.sq.params[j].polydispersity.val = f.sq.params[j].polydispersity.val + eps.sq.params[j].polydispersity.val
+                    
+                tmp = copy.deepcopy(loc)
+                tmp.sq.params[j].polydispersity.val = loc.sq.params[j].polydispersity.val + eps.sq.params[j].polydispersity.val
+                if tmp.sq.params[j].polydispersity.val >= modconf.sq.params[j].polydispersity.max:
+                    tmp.sq.params[j].polydispersity.val = loc.sq.params[j].polydispersity.val - eps.sq.params[j].polydispersity.val
+                    
                 stepped.append(tmp)
-                steps.append(eps.sq.params[j].polydispersity.val)
+                steps.append(eps.sp.params[j].polydispersity.val)
     
     # and this is where things get ugly
     JT = []
     for w in range(0,len(stepped)):
+        #for a,m in enumerate(stepped[w].params):
+        #    print("stepped["+str(w)+"] parameters " + str(m.val))
+            
         #calculate the profiles
         if d.dx is None:
             lprof = sas_calc.calc_profile_usm(d, stepped[w])
@@ -456,23 +478,31 @@ def est_uncerts(d, f, best_model):
             lprof_usm = sas_calc.calc_profile_usm(d, stepped[w]) 
             lprof = sas_calc.calc_profile(d,stepped[w],lprof_usm)
         
-        JT.append((lprof.y-best_model.y)/steps[w])
+        tprof = sas_data.Model(d, unsmeared = False)
+        for z in range(0,len(tprof.y)):
+            tprof.y[z] = 0.5*(lprof.y[z]-best_model.y[z])/(d.dy[z]*steps[w])
+            #if z==0:
+                #print(str(best_model.y[z]) + "     " + str(lprof.y[z]) + "     " + str(steps[w]) + "    tprof.y[0] = "+str(tprof.y[z]))
+            
+        JT.append(tprof.y)
     
     #this is the matrix that we want
-    J = np.vstack(JT).T
-        
-    # and we use J to calculate the covariance matrix that we need to calculate the errors.
-    # this is pretty much as shown in the bumps code.
-    U, S, V = np.linalg.svd(J,0)
-    # this line took a long time to understand, but it looks very efficient
-    # not sure if it really is during run time...still have to index through the mess
-    # the magic number is here from the bumps code, too.
-    S[S <= 1e-8] = 1e-8
-    # the covariance matrix is the inverse of the JT*J matrix, obtained from above
-    # see lines 241-250 of lsqerror.py of bumps for what the next line means.
-    # the description there is easy enough to follow
-    Cov = np.dot(V.T.conj()/(S ** 2), V)
-    # at least this is easy enough, it is the stderr(C) function from bumps lsqerror.py
+    J_T = np.vstack(JT)
+    J = J_T.T
+    # print("Jacobian")
+    # print(J)
+    
+    # this is the singlular value decomposition of J
+    # see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py lines 237-239
+    # The tolerance shown cuts down on singlular values
+    # bumps as a whole may not use this directly.  have to give it a try, though
+    U, S, V = np.linalg.svd(J, 0)
+    tol = 1e-8
+    S[S <= tol] = tol
+    
+    # This is the work around to avoid the direct inversion of the psuedo-Hessian
+    Cov = np.dot(V.T.conj() / S**2, V)
+    
     # the diagonal should be only as long as the number of parameters
     errs = np.sqrt(np.diag(Cov))
 
@@ -483,16 +513,16 @@ def est_uncerts(d, f, best_model):
     for i,p in enumerate(loc.params):
         if loc.params[i].kind not in ["fixed"]:
             loc.params[i].unc = errs[k]
-            k = k + 1
         else:
             loc.params[i].unc = 0.00
+        k = k + 1
     if loc.sq is not None:
         for j, sqp in enumerate(loc.sq.params):
             if loc.sq.params[j].kind not in ["fixed"]:
                 loc.sq.params[j].unc = errs[k]
-                k = k + 1
             else:
                 loc.sq.params[j].unc = 0.00
+            k = k + 1
     # we filled it like this above...
     for i,p in enumerate(loc.params):
         if p.polydispersity is not None:
