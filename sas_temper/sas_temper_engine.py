@@ -492,18 +492,19 @@ def est_uncerts(d, f, modconf, best_model):
     # print("Jacobian")
     # print(J)
     
-    # This is an approximation of the Hessian
-    Hess = np.matmul(J_T,J)
-    print("Hessian")
-    print(Hess)
+    # this is the singlular value decomposition of J
+    # see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py lines 237-239
+    # The tolerance shown cuts down on singlular values
+    # bumps as a whole may not use this directly.  have to give it a try, though
+    U, S, V = np.linalg.svd(J, 0)
+    tol = 1e-8
+    S[S <= tol] = tol
     
-    # Invert it to get the covariance matrix
-    Cov = np.linalg.inv(Hess)
-    print("Covariance Matrix")
-    print(Cov)
+    # This is the work around to avoid the direct inversion of the psuedo-Hessian
+    Cov = np.dot(V.T.conj() / S**2, V)
     
     # the diagonal should be only as long as the number of parameters
-    errs = np.sqrt(abs(np.diag(Cov)))
+    errs = np.sqrt(np.diag(Cov))
 
     # these final values need to be inserted into the structure to be returned
     # note that fixed parameters have their uncertainty set to 0.0 here to avoid
