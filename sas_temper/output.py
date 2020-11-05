@@ -279,14 +279,14 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     
     # set the plot title
     val = "%6.4f" %(chisq)
-    fig.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
+    ax.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
     
     # set the text of the axes
     ax.set_xlabel('q  (1/${\AA}$)')
     ax.set_ylabel('Intensity  (1/cm)')
     
-    # plot the data and the fit curve.  No errorbars here
-    ax.errobar(d.x, d.y, marker='o', mec='k', mfc='w', color='w')
+    # plot the data and the fit curve.
+    ax.errobar(d.x, d.y, yerr=d.dy, marker='o')
     ax.errorbar(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
