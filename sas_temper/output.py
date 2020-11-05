@@ -286,7 +286,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     ax.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.
-    ax.errobar(d.x, d.y, yerr=d.dy, marker='o')
+    ax.errorbar(d.x, d.y, yerr=d.dy, marker='o')
     ax.errorbar(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
