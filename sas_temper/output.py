@@ -272,22 +272,21 @@ def outputSetRes(conf, res):
     
     
 def outputFitCurve(conf, d, m, mnum, chisq):
-    fig, ax = plt.subplots()
-    ax.set_xscale("log", nonposx='clip')
-    ax.set_yscale("log", nonposy='clip')
-    ax.set_autoscale_on(True)
+    fig = plt.figure()
+    grph = fig.add_subplot(1,1,1)
+    grph.set_autoscale_on(True)
     
     # set the plot title
     val = "%6.4f" %(chisq)
-    ax.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
+    grph.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
     
     # set the text of the axes
-    ax.set_xlabel('q  (1/${\AA}$)')
-    ax.set_ylabel('Intensity  (1/cm)')
+    grph.set_xlabel('q  (1/${\AA}$)')
+    grph.set_ylabel('Intensity  (1/cm)')
     
-    # plot the data and the fit curve.
-    ax.errorbar(d.x, d.y, yerr=d.dy, marker='o')
-    ax.errorbar(m.x, m.y, 'r')
+    # plot the data and the fit curve.  No errorbars here
+    grph.loglog(d.x, d.y, marker='o', mec='k', mfc='w', color='w')
+    grph.loglog(m.x, m.y, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
     fig.savefig(oname,format='png')
