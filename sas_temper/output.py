@@ -286,10 +286,10 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     ax.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.
-    ax.errorbar(d.x, d.y, yerr=d.dy, marker='o',mec='k',mfc='w',color='w')
+    ax.errorbar(d.x, d.y, yerr=d.dy, marker='o',mec='k',mfc='w',color='w',ecolor='k')
     # local_dy = np.zeros(len(m.x))
     # ax.errorbar(m.x, m.y, yerr=local_dy, color='r')
-    ax.plot(m.x,m.y,color='r')
+    ax.plot(m.x,m.y,color='r',zorder=2.5)
     
     oname = str(conf.output)+"%02d.png" %(mnum)
     fig.savefig(oname,format='png')
