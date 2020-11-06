@@ -2,3 +2,4 @@ git+https://github.com/SASView/sasmodels.git
 numpy==1.19.0
 scipy==1.5.2
 PyYAML==5.3.1
+matplotlib=3.2.2
