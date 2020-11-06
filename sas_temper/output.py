@@ -287,7 +287,8 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     
     # plot the data and the fit curve.
     ax.errorbar(d.x, d.y, yerr=d.dy, marker='o')
-    ax.errorbar(m.x, m.y, yerr=NULL, 'r')
+    local_dy = np.zeros(len(m.x)
+    ax.errorbar(m.x, m.y, yerr=local_dy, 'r')
     
     oname = str(conf.output)+"%02d.png" %(mnum)
     fig.savefig(oname,format='png')
