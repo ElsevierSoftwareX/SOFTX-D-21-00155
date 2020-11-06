@@ -279,7 +279,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     
     # set the plot title
     val = "%6.4f" %(chisq)
-    fig.set_title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
+    fig.title('Fit of profile '+str(mnum)+' to '+str(conf.datafile)+r' $\chi^2$='+val)
     
     # set the text of the axes
     ax.set_xlabel('q  (1/${\AA}$)')
