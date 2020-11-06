@@ -37,6 +37,9 @@ def sa_control(fconf, modconf, d):
     
     # st_time = time.time()
     
+    # add a little feedback to the user
+    print('model started:', end='', flush=True)
+    
     # the number of refinement iterations to do
     for j in range(0,refines) :
         for i in range(0,refine_models):
@@ -45,8 +48,14 @@ def sa_control(fconf, modconf, d):
             else:
                 res[i],mprof[i],mprof_usm[i] = sa_engine(fconf,localconf,d)
             
+            # add a little feedback to the user            
+            print('#', end='', flush=True)
+            
         # refine the ranges to start over
         localconf = sa_refine(refine_models, res)
+    
+    # add a little feedback to the user
+    print(" done")
     
     best = 1000000000.00
     hit = 0
