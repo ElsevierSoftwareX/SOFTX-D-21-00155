@@ -38,7 +38,7 @@ def sa_control(fconf, modconf, d):
     # st_time = time.time()
     
     # add a little feedback to the user
-    print('model started:  ', end='', flush=True)
+    print('model started:', end='', flush=True)
     
     # the number of refinement iterations to do
     for j in range(0,refines) :
