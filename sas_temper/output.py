@@ -273,8 +273,8 @@ def outputSetRes(conf, res):
     
 def outputFitCurve(conf, d, m, mnum, chisq):
     fig, ax = plt.subplots()
-    ax.set_xscale("log", nonposx='clip')
-    ax.set_yscale("log", nonposy='clip')
+    ax.set_xscale("log", nonpositive='clip')
+    ax.set_yscale("log", nonpositive='clip')
     ax.set_autoscale_on(True)
     
     # set the plot title
@@ -286,7 +286,7 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     ax.set_ylabel('Intensity  (1/cm)')
     
     # plot the data and the fit curve.
-    ax.errorbar(d.x, d.y, yerr=d.dy, marker='o')
+    ax.errorbar(d.x, d.y, yerr=d.dy, marker='o',mec='k',mfc='w',color='w')
     # local_dy = np.zeros(len(m.x))
     # ax.errorbar(m.x, m.y, yerr=local_dy, color='r')
     ax.plot(m.x,m.y,color='r')
