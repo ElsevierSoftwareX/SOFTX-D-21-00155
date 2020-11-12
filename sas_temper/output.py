@@ -251,7 +251,7 @@ def outputSetRes(conf, res):
             grph.set_xlabel(str(names[i]))
             grph.set_ylabel("Count")
             oname = str(conf.output)+"_"+str(names[i])+"_histogram.png"
-            fig.savefig(oname,format="png")
+            fig.savefig(oname,format="png", bbox_inches = "tight")
             plt.close(fig)
 
     # output plots of the values of the parameters vs. chi-squared
