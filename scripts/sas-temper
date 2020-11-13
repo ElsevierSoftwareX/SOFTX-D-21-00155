@@ -13,11 +13,9 @@ import copy
 import time as tm
 import os
 import numpy as np
-print(sys.path)
 
 # these are from this particular project
 import sas_temper
-print(sas_temper.__file__)
 import sas_temper.sas_temper_config as sa_config
 import sas_temper.modelconfig as modelconfig
 import sas_temper.parse_conf as parse_conf
