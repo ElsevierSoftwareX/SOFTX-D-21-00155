@@ -1,4 +1,5 @@
-from setuptools import setup
+from distutils.core import setup
+
 
 REQUIREMENTS_DOT_TXT="requirements.txt"
 
@@ -24,7 +25,7 @@ setup(
     version='0.2.2',
     description='SAS data analysis using simulated annealing and reproducibility characterization.  Uses sasmodels package',
     packages=['sas_temper'],
-    scripts=['scripts/sas_temper'],
+    scripts=['scripts/sas-temper'],
     instal_requires=required_packages(),
     dependency_link=external_dependency_links(),
     package_data={'': [REQUIREMENTS_DOT_TXT]}
