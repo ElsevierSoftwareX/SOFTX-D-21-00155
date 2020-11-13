@@ -5,6 +5,7 @@ dependencies:
 - python=3.6
 - pip:
   - scipy
+  - numpy
   - matplotlib
   - sasmodels
   - pyyaml
