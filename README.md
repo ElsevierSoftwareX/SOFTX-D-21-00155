@@ -1,4 +1,4 @@
-**sas_temper**
+**sas-temper**
 
 SAS data analysis package that uses simulated annealing to fit data using the sasmodels package.
 The program automatically performs multiple runs of the fitting to check the reproducibility of the result.
@@ -15,7 +15,7 @@ you can create a specific environment using conda and the sas_temper_env.yaml fi
 conda env create -f sas_temper_env.yaml
 ```
 
-To activate the environment so you can run sas_temper, type the following.
+To activate the environment so you can run sas-temper, type the following.
 
 ```
 conda activate sas_temper
@@ -33,9 +33,10 @@ An example is available in the `examples` directory:
 
 ```
 cd examples
-sas_temper test_sphere_nz.yaml
+sas-temper test_sphere_nz.yaml
 ```
 
+**Note the use of the dash in the executable script name, rather than an underscore.**
 
 A portion of this research was sponsored by the Laboratory Directed Research 
 and Development Program of Oak Ridge National Laboratory, managed by UT-Battelle, 

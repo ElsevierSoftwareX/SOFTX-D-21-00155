@@ -237,7 +237,7 @@ def outputSetRes(conf, res):
                     grph.set_xlabel(str(names[i]))
                     grph.set_ylabel(str(names[j]))
                     oname = str(conf.output)+"_"+str(names[j])+"_"+str(names[i])+".png"
-                    fig.savefig(oname,format="png")
+                    fig.savefig(oname,format="png", bbox_inches = "tight")
                     plt.close(fig)
 
     # output histograms of the non-fixed parameters
@@ -268,7 +268,7 @@ def outputSetRes(conf, res):
             grph.plot(vals[i],chisq,'ko')
 
             oname = str(conf.output)+"_"+str(names[i])+"_chisq.png"
-            fig.savefig(oname,format="png")
+            fig.savefig(oname,format="png", bbox_inches = "tight")
             plt.close(fig)
 
 
@@ -292,5 +292,5 @@ def outputFitCurve(conf, d, m, mnum, chisq):
     ax.plot(m.x,m.y,color='r',linewidth=2, zorder=2.5)
 
     oname = str(conf.output)+"%02d.png" %(mnum)
-    fig.savefig(oname,format='png')
+    fig.savefig(oname,format='png', bbox_inches = "tight")
     plt.close(fig)
