@@ -1,0 +1,108 @@
+# this is an example of using the hard sphere structure factor
+sphere:
+    name: sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.5] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hardsphere
+        radius_effective:
+            log: [1.0, 3.5]
+        volfraction: 
+            linear: [0.0, 0.50]
+
+# this is an example of using the sticky hard sphere structure factor
+sphere:
+    name: sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.5] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: stickyhardsphere
+        radius_effective:
+            log: [1.0, 3.5]
+        volfraction: 
+            linear: [0.0, 0.50]
+        perturb:
+            linear: [0.01, 0.1]
+        stickiness:
+            linear: [0.0, 1.0]
+
+# this is an example of using the square well structure factor
+sphere:
+    name: sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.5] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: squarewell
+        radius_effective:
+            log: [1.0, 3.5]
+        volfraction: 
+            linear: [0.0, 0.50]
+        welldepth:
+            linear: [0.01, 0.1]
+        wellwidth:
+            linear: [1.0, 2.0]
+
+# this is an example of using the Hayter-Penfold charged sphere structure factor
+sphere:
+    name: sphere
+    Category: shape-sphere
+    scale:
+        fixed: [1.0]
+    background: 
+        fixed: [0.001]
+    sld: 
+        linear: [-0.56, 8.00]
+    sld_solvent: 
+        linear: [-0.56, 6.38]
+    radius: 
+        log: [1.0, 3.5] 
+        polydispersity:
+            SchulzDispersion: [0.0, 0.40]
+    Structure_Factor: 
+        name: hayter_msa
+        radius_effective:
+            log: [1.0, 3.5]
+        volfraction: 
+            linear: [0.0, 0.50]
+        charge:
+            linear: [0.0, 20.0]
+        temperature:
+            linear: [273.15, 373.15]
+        concentration_salt:
+            linear: [0.0, 5.0]
+        dielectconst:
+            linear: [0.0, 100.0]
+            
