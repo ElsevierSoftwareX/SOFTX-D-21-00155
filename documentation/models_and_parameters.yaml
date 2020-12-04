@@ -231,10 +231,6 @@ core_multi_shell:
         linear: [-0.56, 8.00]
     sld10:
         linear: [-0.56, 8.00]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
    
 core_shell_bicelle_elliptical:
     name: core_shell_bicelle_elliptical
@@ -358,10 +354,6 @@ core_shell_ellipsoid:
         linear: [0.1, 10.0] 
         polydispersity:
             SchulzDispersion: [0.0, 0.40]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
 
 core_shell_parallelepiped:
     name: core_shell_parallelepiped
@@ -426,10 +418,6 @@ core_shell_sphere:
         log: [0.0, 2.0] 
         polydispersity:
             SchulzDispersion: [0.0, 0.40]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
 
 correlation_length:
     name: correlation_length
@@ -498,10 +486,6 @@ ellipsoid:
         log: [1.0, 3.0] 
         polydispersity:
             SchulzDispersion: [0.0, 0.40]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
 
 elliptical_cylinder:
     name: elliptical_cylinder
@@ -668,10 +652,6 @@ fuzzy_sphere:
     fuzziness: 
         linear: [0.25, 2.0] 
         coupled: [radius]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction: 
-            linear: [0.0, 0.50]
 
 gaussian_peak:
     name: gaussian_peak
@@ -1044,10 +1024,6 @@ multilayer_vesicle:
             SchulzDispersion: [0.0, 0.40]
     n_shells: 
         integer: [1, 25]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
 
 onion:
     name: onion
@@ -1240,13 +1216,6 @@ poly_gauss_coil:
         log: [1.0, 2.8]
     polydispersity: 
         linear: [1.0, 2.0]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50] 
-        radius_effective: 
-            linear: [1.0, 1.5] 
-            coupled: [rg]
         
 polymer_excl_volume:
     name: polymer_excl_volume
@@ -1259,10 +1228,6 @@ polymer_excl_volume:
         log: [1.0, 3.0]
     porod_exp: 
         linear: [1.0, 4.0]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
 
 polymer_micelle:
     name: polymer_micelle
@@ -1370,10 +1335,6 @@ raspberry:
     penetration:
         linear: [0.0, 1.0] 
         coupled: [radius_sm]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction: 
-            linear: [ 0.0, 0.50]
 
 rectangular_prism:
     name: rectangular_prism
@@ -1435,10 +1396,6 @@ sphere:
         log: [1.0, 3.5] 
         polydispersity:
             SchulzDispersion: [0.0, 0.40]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction: 
-            linear: [0.0, 0.50]
 
 spherical_sld:
     name: spherical_sld
@@ -1677,10 +1634,6 @@ triaxial_ellipsoid:
         log: [1.0, 4.0] 
         polydispersity: 
             SchulzDispersion: [0.0, 0.40]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction: 
-            linear: [0.0, 0.50]
 
 teubner_strey:
     name: teubner_strey
@@ -1825,8 +1778,4 @@ vesicle:
         log: [1.0, 2.0] 
         polydispersity:
             SchulzDispersion: [0.0, 0.40]
-    Structure_Factor: 
-        name: hardsphere
-        volfraction:
-            linear: [0.0, 0.50]
 
