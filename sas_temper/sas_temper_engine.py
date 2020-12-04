@@ -453,7 +453,7 @@ def est_uncerts(d, f, modconf, best_model):
             
             tmp = copy.deepcopy(loc)
             tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val + eps.params[i].polydispersity.val
-            if tmp.params[i].polydispsersity.val >= modconf.params[i].polydispersity.max:
+            if tmp.params[i].polydispersity.val >= modconf.params[i].polydispersity.max:
                 tmp.params[i].polydispersity.val = loc.params[i].polydispersity.val - eps.params[i].polydispersity.val
                 
             stepped.append(tmp)
