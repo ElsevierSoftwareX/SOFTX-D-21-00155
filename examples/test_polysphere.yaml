@@ -1,0 +1,31 @@
+file: 
+    name: sphere_nz_unc.txt
+    qmin: 0.01
+    qmax: 0.30
+    
+output_files: test_sphere_nz
+
+sa_parameters: 
+    temperatures: 100
+    temperature_rate: 0.90
+    parameter_rate: 0.95
+    iterations: 1000
+    models_to_generate: 5
+
+model:
+    name: sphere
+    category: shape-sphere
+    scale:
+        fixed: [1.00]
+    background: 
+        linear: [0.000, 0.10]
+    sld: 
+        linear: [5.0, 6.0]
+    sld_solvent: 
+        linear: [3.5, 4.5]
+    radius: 
+        linear: [50.0, 300.0]
+        polydispersity: 
+            SchulzDispersion: [0.0, 0.40]
+    
+
