@@ -57,8 +57,9 @@ for i in range(0,sasTemperConf.models):
     #output the results of the single fitting
     output.outputSingleRes(sasTemperConf, experimentalData, models[i], i, results[i])
     
-    # add a little feedback to the user            
-    print('#', end='', flush=True)
+    # add a little feedback to the user 
+    if (i % 10==0):
+        print('#', end='', flush=True)
 
 
 # and output the analysis of the set of models found
