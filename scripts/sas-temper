@@ -1,32 +1,69 @@
-from distutils.core import setup
+#!/usr/bin/env python
+"""
+sas_temper
+
+__main__.py:  this is where the action happens
+
+Oak Ridge National Laboratory, 2020
+
+"""
+
+import sys
+import copy
+import time as tm
+import os
+import numpy as np
+
+# these are from this particular project
+import sas_temper
+import sas_temper.sas_temper_config as sa_config
+import sas_temper.modelconfig as modelconfig
+import sas_temper.parse_conf as parse_conf
+import sas_temper.output as output
+import sas_temper.sas_temper_engine as engine
+import sas_temper.sas_data as sas_data
+
+# will need to import material from sasview.src.sas.sascalc directories
+#   the directories are all useful, but are not simple files in themselves
 
 
-REQUIREMENTS_DOT_TXT="requirements.txt"
+ # see if the program has been called correctly
+if len(sys.argv) < 2:
+    raise Exception("No configuration file was specified")
 
-def required_packages():
-    return [format_dependency(dep) for dep in requirements_txt()]
+# parse the configuration file for the parameters
+#modelConf = modelconfig.ModelConfig()
+#sasTemperConf = sa_config.SAConfiguration()
+sasTemperConf, modelConf = parse_conf.parse_config(sys.argv[1])
 
-def format_dependency(dependency):
-    package = dependency.split('#egg=')[-1]
-    return package.replace('-','==')
+# Get the data from the data file
+experimentalData = sas_data.SAData(sasTemperConf.datafile,sasTemperConf.qmin,sasTemperConf.qmax)
 
-def requirements_txt():
-    with open(REQUIREMENTS_DOT_TXT) as f:
-        return f.read().splitlines()
+# This is the outer control loop to generate the set of results
+results = np.empty(sasTemperConf.models, "object")
+models = np.empty(sasTemperConf.models, "object")
+models_usm = np.empty(sasTemperConf.models, "object")
 
-def external_dependency_links():
-    return filter(is_external_dependency, requirements_txt())
+# seed the random number generator
+np.random.seed(int(tm.time()) + int(os.getpid()))
 
-def is_external_dependency(dependency):
-    return dependency.startswith('git')
+# add a little feedback to the user
+print('model started:', end='', flush=True)
 
-setup(
-    name='sas_temper',
-    version='0.3.0',
-    description='SAS data analysis using simulated annealing and reproducibility characterization.  Uses sasmodels package',
-    packages=['sas_temper'],
-    scripts=['scripts/sas-temper'],
-    instal_requires=required_packages(),
-    dependency_link=external_dependency_links(),
-    package_data={'': [REQUIREMENTS_DOT_TXT]}
-    )
+# this loop creates the set of models
+for i in range(0,sasTemperConf.models):
+    results[i], models[i], models_usm[i] = engine.sa_control(sasTemperConf,modelConf,experimentalData)
+
+    #output the results of the single fitting
+    output.outputSingleRes(sasTemperConf, experimentalData, models[i], i, results[i])
+    
+    # add a little feedback to the user            
+    print('#', end='', flush=True)
+
+
+# and output the analysis of the set of models found
+output.outputSetRes(sasTemperConf, results)
+
+# add a little feedback to the user
+print(" done")
+
