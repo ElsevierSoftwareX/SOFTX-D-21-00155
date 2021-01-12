@@ -26,14 +26,14 @@ import sas_temper.sas_calc as sas_calc
 def sa_control(fconf, modconf, d):
     # we can get right down to business since this is a single minimization.
     
-    st_time = time.time()
+    #st_time = time.time()
     
     res,mprof,mprof_usm = sa_engine(fconf,modconf,d)
     
-    end_time = time.time()
-    dif_time = end_time-st_time
-    junk = "Time for a single model = " + str(dif_time)
-    print(junk)
+    #end_time = time.time()
+    #dif_time = end_time-st_time
+    #junk = "Time for a single model = " + str(dif_time)
+    #print(junk)
     
     return res, mprof, mprof_usm
     
