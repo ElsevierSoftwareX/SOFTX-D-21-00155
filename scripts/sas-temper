@@ -58,7 +58,7 @@ for i in range(0,sasTemperConf.models):
     output.outputSingleRes(sasTemperConf, experimentalData, models[i], i, results[i])
     
     # add a little feedback to the user 
-    if (i % 10==0):
+    if ((i+1) % 10==0):
         print('#', end='', flush=True)
 
 
