@@ -19,60 +19,26 @@ import sas_temper.sas_temper_config as config
 import sas_temper.sas_data as sas_data
 import sas_temper.sas_calc as sas_calc
 
-# this handles the set generation
+# this function handles the set generation
 # fconf is the set of configuration parameters for the fitting itself
 # modconf is the model to be used and the parameter ranges
 # d is the input data to be fit against
 def sa_control(fconf, modconf, d):
-    # this is the number of refinements to do and how many models to use - yes, they are 'magic numbers'
-    refines = 5
-    refine_models = 10
+    # we can get right down to business since this is a single minimization.
     
-    # set  up the memory
-    res = np.empty(refine_models, "object")            # the parameters returned from the fitting
-    mprof = np.empty(refine_models, "object")        # the profiles returned from the fitting
-    mprof_usm = np.empty(refine_models, "object")    # the unsmeared profiles returned from the fitting - may be empty
+    #st_time = time.time()
     
-    localconf = modelconfig.ModelConfig(modconf.name,modconf.category,modconf.params,modconf.sq)
-    
-    # st_time = time.time()
-    
-    # add a little feedback to the user
-    print('model started:', end='', flush=True)
-    
-    # the number of refinement iterations to do
-    for j in range(0,refines) :
-        for i in range(0,refine_models):
-            if j is 0:
-                res[i],mprof[i],mprof_usm[i] = sa_engine(fconf,modconf,d)
-            else:
-                res[i],mprof[i],mprof_usm[i] = sa_engine(fconf,localconf,d)
-            
-            # add a little feedback to the user            
-            print('#', end='', flush=True)
-            
-        # refine the ranges to start over
-        localconf = sa_refine(refine_models, res)
-    
-    # add a little feedback to the user
-    print(" done")
-    
-    best = 1000000000.00
-    hit = 0
-    for k in range(0, refine_models):
-        if res[k].chisq < best:
-            hit = k
-            best = res[k].chisq
+    res,mprof,mprof_usm = sa_engine(fconf,modconf,d)
     
     #end_time = time.time()
     #dif_time = end_time-st_time
     #junk = "Time for a single model = " + str(dif_time)
     #print(junk)
     
-    return res[hit], mprof[hit], mprof_usm[hit]
+    return res, mprof, mprof_usm
     
 
-# this is the actual simulated annealing
+# this function performs the actual simulated annealing
 # fconf is the set of configuration parameters for the fitting itself
 # modconf is the model to be used and the parameter ranges
 # d is the input data to be fit against
@@ -251,150 +217,9 @@ def define_model(schedule, modconf, temperature, rval, current):
     
     return local
 
-# refine the configuration based on a set of results    
-def sa_refine(numres, res):
-    # make the updated configuration structure and initialize the values
-    update_config = modelconfig.ModelConfig(res[0].name,res[0].category,res[0].params,res[0].sq)
-    for i, p in enumerate(update_config.params):
-        update_config.params[i].min = 1000000000.00
-        update_config.params[i].max = -1000000000.00
-        
-        if p.polydispersity is not None:
-            update_config.params[i].polydispersity.min = 1000000000.00
-            update_config.params[i].polydispersity.max = -1000000000.00
-        
-    if update_config.sq is not None:
-        for i, sqp in enumerate(update_config.sq.params):
-            update_config.sq.params[i].min = 1000000000.00
-            update_config.sq.params[i].max = -1000000000.00
-            
-            if sqp.polydispersity is not None:
-                update_config.sq.params[i].polydispersity.min = 1000000000.00
-                update_config.sq.params[i].polydispersity.max = -1000000000.00
-                
-    # first, create the histogram from the current results
-    histo_bins = 15
-    
-    hmin = np.zeros(histo_bins, dtype=np.float64)
-    hmax = np.zeros(histo_bins, dtype=np.float64)
-    hmid = np.zeros(histo_bins, dtype=np.float64)
-    hbin = np.zeros(histo_bins, dtype=np.int)
-    chisq = np.zeros(numres, dtype = np.float64)
-    
-    min = 1000000000.00
-    max = -1000000000.00
-    for i in range(0,numres):
-        chisq[i] = res[i].chisq
-        if res[i].chisq < min:
-            min = res[i].chisq
-        if res[i].chisq > max:
-            max = res[i].chisq
-    
-    if (max/min) < 10.0:
-        # use linear bins for the histogram
-        min = 0.9*min
-        max = 1.1*max
-        dx = (max-min)/histo_bins
-        
-        for i in range(0,histo_bins):
-            hmin[i] = i*dx + min
-            hmax[i] = (i+1.0)*dx + min
-            hmid[i] = (i+0.5)*dx + min
-            hbin[i] = 0
-            
-    else:
-        # use logarithmic bins for the histogram
-        min = 0.9*m.log10(min)
-        max = 1.1*m.log10(max)
-        dx = (max-min)/histo_bins
-        
-        for i in range(0,histo_bins):
-            hmin[i] = m.pow(10.0, (i*dx + min))
-            hmax[i] = m.pow(10.0, ((i+1.0)*dx + min))
-            hmid[i] = m.pow(10.0, ((i+0.5)*dx + min))
-            hbin[i] = 0
-        
-    for i in range(0,numres):
-        for j in range(0,histo_bins):
-            if (res[i].chisq > hmin[j]) and (res[i].chisq <= hmax[j]):
-                hbin[j] += 1
-                
-    # now that we are done with the histogram, we can 
-    # figure out what needs to be updated and how
-    # we actually don't need to sort the results
-    res_order = np.argsort(chisq)
-    check = 0
-    hit = 0
-    for i in range(0,histo_bins):
-        check += hbin[i]
-        if hbin[i] > 0:
-            hit = i
-            break
-    check = hbin[hit]
-    if check < int(numres/10.0):
-        check = int(numres/10.0)
-    if check < 3:
-        check = 3
-        
-    # determine the range of values in the set of results
-    for i in range(0,check):
-        for j, p in enumerate(res[res_order[i]].params):
-            if p.val < update_config.params[j].min:
-                update_config.params[j].min = p.min
-            if p.val > update_config.params[j].max:
-                update_config.params[j].max = p.max
-                
-            if p.polydispersity is not None:
-                if p.polydispersity.val < update_config.params[j].polydispersity.min:
-                    update_config.params[j].polydispersity.min = p.polydispersity.min
-                if p.polydispersity.val > update_config.params[j].polydispersity.max:
-                    update_config.params[j].polydispersity.max = p.polydispersity.max
-        
-        if update_config.sq is not None:
-            for j, sqp in enumerate(res[res_order[i]].sq.params):
-                if sqp.val < update_config.sq.params[j].min:
-                    update_config.sq.params[j].min = sqp.min
-                if sqp.val > update_config.sq.params[j].max:
-                    update_config.sq.params[j].max = sqp.max
-                    
-                if sqp.polydispersity is not None:
-                    if sqp.polydispersity.val < update_config.sq.params[j].polydispersity.min:
-                        update_config.sq.params[j].polydispersity.min = sqp.polydispersity.min
-                    if sqp.polydispersity.val > update_config.sq.params[j].polydispersity.max:
-                        update_config.sq.params[j].polydispersity.max = sqp.polydispersity.max
-        
-    return update_config
-    
-def modify_constraints(analyzed):
-    local = modelconfig.ModelConfig(analyzed.name,analyzed.category,analyzed.params,analyzed.sq)
-    
-    for i, p in enumerate(analyzed.params):
-        range = p.max - p.min
-        mid = 0.5*(p.min + p.max)
-        local.params[i].max = mid + 0.6*range
-        local.params[i].min = mid - 0.6*range
-        
-        if p.polydispersity is not None:
-            range = p.polydispersity.max - p.polydispersity.min
-            mid = 0.5*(p.polydispersity.min + p.polydispersity.max)
-            local.params[i].polydispersity.max = mid + 0.6*range
-            local.params[i].polydispersity.min = mid - 0.6*range
-        
-    if analyzed.sq is not None:
-        for i, sqp in enumerate(analyzed.sq.params):
-            range = sqp.max - sqp.min
-            mid = 0.5*(sqp.min + sqp.max)
-            local.sq.params[i].max = mid + 0.6*range
-            local.sq.params[i].min = mid - 0.6*range
-            
-            if sqp.polydispersity is not None:
-                range = sqp.polydispersity.max - sqp.polydispersity.min
-                mid = 0.5*(sqp.min + sqp.max)
-                local.sq.params[i].polydispersity.max = mid + 0.6*range
-                local.sq.params[i].polydispersity.min = mid - 0.6*range
-    
-    return local
-    
+# perform the traditional estimation of the uncertainties in the
+# fitting parameters by looking at the partial derivatives using the
+# approach that is used in Paul Kienzle's "bump", as is noted below.    
 def est_uncerts(d, f, modconf, best_model):
     # this is our ugly way of getting at this matrix of derivatives
     loc = modelconfig.ModelConfig(f.name,f.category,f.params,f.sq)

@@ -47,12 +47,24 @@ models_usm = np.empty(sasTemperConf.models, "object")
 # seed the random number generator
 np.random.seed(int(tm.time()) + int(os.getpid()))
 
+# add a little feedback to the user
+print('model started:', end='', flush=True)
+
 # this loop creates the set of models
 for i in range(0,sasTemperConf.models):
     results[i], models[i], models_usm[i] = engine.sa_control(sasTemperConf,modelConf,experimentalData)
 
     #output the results of the single fitting
     output.outputSingleRes(sasTemperConf, experimentalData, models[i], i, results[i])
+    
+    # add a little feedback to the user 
+    if ((i+1) % 10==0):
+        print('#', end='', flush=True)
+
 
 # and output the analysis of the set of models found
 output.outputSetRes(sasTemperConf, results)
+
+# add a little feedback to the user
+print(" done")
+

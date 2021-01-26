@@ -1,5 +1,6 @@
 name: sas_temper
 dependencies:
+- pip
 - numpy
 - nb_conda
 - python=3.6
