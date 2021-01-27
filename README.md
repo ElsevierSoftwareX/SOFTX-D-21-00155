@@ -38,6 +38,6 @@ sas-temper test_sphere_nz.yaml
 
 **Note the use of the dash in the executable script name, rather than an underscore.**
 
-A portion of this research was sponsored by the Laboratory Directed Research 
+Research sponsored by the Laboratory Directed Research 
 and Development Program of Oak Ridge National Laboratory, managed by UT-Battelle, 
 LLC, for the U. S. Department of Energy.
