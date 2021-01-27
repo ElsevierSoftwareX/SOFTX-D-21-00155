@@ -34,7 +34,7 @@ def outputSingleRes(conf, d, m, mnum, res):
         f.write(buff)
         buff = "# the name of the model used:  " + str(lres.name) + "\n"
         f.write(buff)
-        buff = "# chi-squared is %6.6f \n" %(lres.chisq)
+        buff = "# chi-squared is %6.6e \n" %(lres.chisq)
         f.write(buff)
         buff = "# list of model fitting parameters and values\n"
         f.write(buff)
@@ -44,20 +44,20 @@ def outputSingleRes(conf, d, m, mnum, res):
             if p.polydispersity is None:
                 if p.kind not in ["fixed"]:
                     if p.kind in ["integer"]:
-                        buff = "# "+str(p.name)+ " = %6d +/- %6.6f\n" %(p.val, p.unc)
+                        buff = "# "+str(p.name)+ " = %6d +/- %6.6e\n" %(p.val, p.unc)
                     else:
-                        buff = "# "+str(p.name)+ " = %6.6f +/- %6.6f\n" %(p.val, p.unc)
+                        buff = "# "+str(p.name)+ " = %6.6e +/- %6.6e\n" %(p.val, p.unc)
                 else:
-                    buff = "# "+str(p.name)+ " = %6.6f; fixed\n" %(p.val)
+                    buff = "# "+str(p.name)+ " = %6.6e; fixed\n" %(p.val)
             else:
                 if p.kind not in ["fixed"]:
                     if p.kind in ["integer"]:
-                        buff = "# "+str(p.name)+ " = %6d +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
+                        buff = "# "+str(p.name)+ " = %6d +/- %6.6e, polydispersity %s = %6.6e +/- %6.6e\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
                     else:
-                        buff = "# "+str(p.name)+ " = %6.6f +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
+                        buff = "# "+str(p.name)+ " = %6.6e +/- %6.6e, polydispersity %s = %6.6e +/- %6.6e\n" %(p.val, p.unc, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
                 else:
                     # the polydispersity parameter cannot be "fixed" at present
-                    buff = "# "+str(p.name)+ " = %6.6f; fixed, polydispersity %s = %6.6f +/- %6.6f\n" %(p.val, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
+                    buff = "# "+str(p.name)+ " = %6.6e; fixed, polydispersity %s = %6.6e +/- %6.6e\n" %(p.val, str(p.polydispersity.kind), p.polydispersity.val, p.polydispersity.unc)
             f.write(buff)
 
             # in case this was coupled
@@ -73,20 +73,20 @@ def outputSingleRes(conf, d, m, mnum, res):
                 if sqp.polydispersity is None:
                     if sqp.kind not in ["fixed"]:
                         if sqp.kind in ["integer"]:
-                            buff = "# " + str(sqp.name) + " = %6d +/- %6.6f \n" %(sqp.val, sqp.unc)
+                            buff = "# " + str(sqp.name) + " = %6d +/- %6.6e \n" %(sqp.val, sqp.unc)
                         else:
-                            buff = "# " + str(sqp.name) + " = %6.6f +/- %6.6f \n" %(sqp.val, sqp.unc)
+                            buff = "# " + str(sqp.name) + " = %6.6e +/- %6.6e \n" %(sqp.val, sqp.unc)
                     else:
-                        buff = "# " + str(sqp.name) + " = %6.6f; fixed \n" %(sqp.val)
+                        buff = "# " + str(sqp.name) + " = %6.6e; fixed \n" %(sqp.val)
                 else:
                     if sqp.kind not in ["fixed"]:
                         if sqp.kind in ["integer"]:
-                            buff = "# " + str(sqp.name) + " = %6d +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
+                            buff = "# " + str(sqp.name) + " = %6d +/- %6.6e, polydispersity %s = %6.6e +/- %6.6e\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
                         else:
-                            buff = "# " + str(sqp.name) + " = %6.6f +/- %6.6f, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
+                            buff = "# " + str(sqp.name) + " = %6.6e +/- %6.6e, polydispersity %s = %6.6e +/- %6.6e\n" %(sqp.val, sqp.unc, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
                     else:
                         # the polydispersity parameter cannot be "fixed" at present
-                        buff = "# " + str(sqp.name) + " = %6.6f; fixed, polydispersity %s = %6.6f +/- %6.6f\n" %(sqp.val, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
+                        buff = "# " + str(sqp.name) + " = %6.6e; fixed, polydispersity %s = %6.6e +/- %6.6e\n" %(sqp.val, str(sqp.polydispersity.kind), sqp.polydispersity.val, sqp.polydispersity.unc)
                 f.write(buff)
 
                 # in case we have a coupled parameter
@@ -97,7 +97,7 @@ def outputSingleRes(conf, d, m, mnum, res):
 
         buff = "# the model profile q and I(q)\n"
         for i in range(0,len(m.x)):
-            buff = "%6.6f\t%6.6f\n" %(m.x[i], m.y[i])
+            buff = "%6.6e\t%6.6e\n" %(m.x[i], m.y[i])
             f.write(buff)
 
     # end by closing the file
@@ -194,9 +194,9 @@ def outputSetRes(conf, res):
         f.write(buff)
         for j in range(0,parms):
             if varkinds[j] in ["fixed"]:
-                buff = "# " + names[j] + " = %6.6f; fixed\n" %(ave[j])
+                buff = "# " + names[j] + " = %6.6e; fixed\n" %(ave[j])
             else:
-                buff = "# " + names[j] + " = %6.6f +/- %6.6f\n" %(ave[j], std[j])
+                buff = "# " + names[j] + " = %6.6e +/- %6.6e\n" %(ave[j], std[j])
             f.write(buff)
 
         buff = "# Pearson product-moment correlation coefficients\n"
@@ -212,12 +212,12 @@ def outputSetRes(conf, res):
         f.write(buff)
         for i in range(0,conf.models):
             buff = ""
-            buff += "%6.6f\t" %(chisq[i])
+            buff += "%6.6e\t" %(chisq[i])
             for j in range(0,parms):
                 if varkinds[j] in ["integer"]:
                     buff += "%6d\t" %(vals[j][i])
                 else:
-                    buff += "%6.6f\t" %(vals[j][i])
+                    buff += "%6.6e\t" %(vals[j][i])
             buff += "\n"
             f.write(buff)
 
