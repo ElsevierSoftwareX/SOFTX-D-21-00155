@@ -34,7 +34,7 @@ def outputSingleRes(conf, d, m, mnum, res):
         f.write(buff)
         buff = "# the name of the model used:  " + str(lres.name) + "\n"
         f.write(buff)
-        buff = "# chi-squared is %6.6e \n" %(lres.chisq)
+        buff = "# chi-squared is %6.6f \n" %(lres.chisq)
         f.write(buff)
         buff = "# list of model fitting parameters and values\n"
         f.write(buff)
