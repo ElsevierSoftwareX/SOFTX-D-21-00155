@@ -22,7 +22,7 @@ def is_external_dependency(dependency):
 
 setup(
     name='sas_temper',
-    version='0.3.0',
+    version='0.3.1',
     description='SAS data analysis using simulated annealing and reproducibility characterization.  Uses sasmodels package',
     packages=['sas_temper'],
     scripts=['scripts/sas-temper'],
