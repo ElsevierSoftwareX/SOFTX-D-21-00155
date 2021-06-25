@@ -257,9 +257,9 @@ def est_uncerts(d, f, modconf, best_model):
             if sqp.kind not in ["fixed"]:
                 eps.sq.params[j].val = step*(sqp.max-sqp.min)
                 if eps.sq.params[j].val == 0.0:
-                    eps.sqp.params[j].val = step
+                    eps.sq.params[j].val = step
             else: 
-                eps.sqp.params[j].val = 0.01*step
+                eps.sq.params[j].val = 0.01*step
                 
             tmp = copy.deepcopy(loc)
             tmp.sq.params[j].val = loc.sq.params[j].val + eps.sq.params[j].val
