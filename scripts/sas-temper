@@ -62,9 +62,12 @@ for i in range(0,sasTemperConf.models):
         print('#', end='', flush=True)
 
 
-# and output the analysis of the set of models found
-output.outputSetRes(sasTemperConf, results)
-
+# and output the analysis of the set of models found,
+# but only if you are generating more than 3 models.
+# much of the information is of little use otherwise.
+if sasTemperConf.models >=3 :
+    output.outputSetRes(sasTemperConf, results)
+    
 # add a little feedback to the user
 print(" done")
 
