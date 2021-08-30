@@ -219,7 +219,8 @@ def define_model(schedule, modconf, temperature, rval, current):
 
 # perform the traditional estimation of the uncertainties in the
 # fitting parameters by looking at the partial derivatives using the
-# approach that is used in Paul Kienzle's "bump", as is noted below.    
+# approach that is used in Paul Kienzle's "bumps", as is noted below.
+# https://github.com/bumps/bumps/blob/master/LICENSE.txt 
 def est_uncerts(d, f, modconf, best_model):
     # this is our ugly way of getting at this matrix of derivatives
     loc = modelconfig.ModelConfig(f.name,f.category,f.params,f.sq)
@@ -327,9 +328,11 @@ def est_uncerts(d, f, modconf, best_model):
     # print(J)
     
     # this is the singlular value decomposition of J
-    # see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py lines 237-239
+    # see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py 
+    # bumps is by Paul Kienzle, who works at NIST's NCNR
+    # https://github.com/bumps/bumps/blob/master/LICENSE.txt
     # The tolerance shown cuts down on singlular values
-    # bumps as a whole may not use this directly.  have to give it a try, though
+    # bumps as a whole may not use this directly.
     U, S, V = np.linalg.svd(J, 0)
     tol = 1e-8
     S[S <= tol] = tol
