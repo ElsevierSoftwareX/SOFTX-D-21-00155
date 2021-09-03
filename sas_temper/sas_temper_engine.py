@@ -224,7 +224,7 @@ def define_model(schedule, modconf, temperature, rval, current):
 # might expect.  This may be removed from future releases, or it will
 # only be available if a single model is being generated.
 #
-# This approach is similar to one of a few that is implemented in bumps.
+# This approach to the estimation is one of a few that is implemented in bumps.
 # bumps is by Paul Kienzle, who works at NIST's NCNR
 # https://github.com/bumps/
 # see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py 
