@@ -219,7 +219,17 @@ def define_model(schedule, modconf, temperature, rval, current):
 
 # perform the traditional estimation of the uncertainties in the
 # fitting parameters by looking at the partial derivatives using the
-# approach that is used in Paul Kienzle's "bump", as is noted below.    
+# Jacobian matrix.  The approach is not perfect, and can give odd
+# values that do not seem consistent with what a person using it 
+# might expect.  This may be removed from future releases, or it will
+# only be available if a single model is being generated.
+#
+# This approach to the estimation is one of a few that is implemented in bumps.
+# bumps is by Paul Kienzle, who works at NIST's NCNR
+# https://github.com/bumps/
+# see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py 
+# bumps is the fitting engine that Sasview uses with sasmodels,
+# but it is an independent package.
 def est_uncerts(d, f, modconf, best_model):
     # this is our ugly way of getting at this matrix of derivatives
     loc = modelconfig.ModelConfig(f.name,f.category,f.params,f.sq)
@@ -326,10 +336,10 @@ def est_uncerts(d, f, modconf, best_model):
     # print("Jacobian")
     # print(J)
     
-    # this is the singlular value decomposition of J
-    # see https://github.com/bumps/bumps/blob/master/bumps/lsqerror.py lines 237-239
+    # This is the singlular value decomposition of J.
+        
     # The tolerance shown cuts down on singlular values
-    # bumps as a whole may not use this directly.  have to give it a try, though
+    # bumps as a whole may not use this directly.
     U, S, V = np.linalg.svd(J, 0)
     tol = 1e-8
     S[S <= tol] = tol
