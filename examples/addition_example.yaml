@@ -1,0 +1,42 @@
+file: 
+    name: sphere_nz_unc.txt
+    qmin: 0.01
+    qmax: 0.30
+    
+output_files: addition_example
+
+sa_parameters: 
+    temperatures: 100
+    temperature_rate: 0.90
+    parameter_rate: 0.95
+    iterations: 1000
+    models_to_generate: 5
+
+model:
+    name: addition_example.py
+    category: shape-independent
+    scale:
+        fixed: [1.00]
+    background: 
+        linear: [0.000, 0.10]
+    A_scale:
+        linear: [0.001, 1.0]
+    A_radius:
+        linear: [100.0, 200.0]
+    A_fractal_dim:
+        linear: [1.0, 4.0]
+    A_cor_length:
+        linear: [100.0, 500.0]
+    A_sld_block:
+        linear: [2.0, 4.0]
+    A_sld_solvent:
+        fixed: [6.4]
+    B_scale:
+        linear: [0.001, 0.10]
+    B_i_zero:
+        fixed: [1.0]
+    B_rg:
+        linear: [20.0, 50.0]
+        
+    
+
