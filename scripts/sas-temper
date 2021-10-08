@@ -69,6 +69,8 @@ for i in range(0,sasTemperConf.models):
 # but only if you are generating more than 3 models.
 # much of the information is of little use otherwise.
 if sasTemperConf.models >=3 :
+    print("Performing the analysis of the set of results")
+    
     output.outputSetRes(sasTemperConf, results)
     
 
