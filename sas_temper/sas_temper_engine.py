@@ -80,7 +80,7 @@ def sa_engine(fconf, modconf, d):
         
         # add a little feedback to the user 
         if ((schedule+1) % 10==0):
-        print('#', end='', flush=True)
+            print('#', end='', flush=True)
 
         iters = 1
         
