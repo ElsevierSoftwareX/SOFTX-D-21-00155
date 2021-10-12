@@ -77,6 +77,11 @@ def sa_engine(fconf, modconf, d):
     schedule = 1
     hit = False
     while schedule <= fconf.temperatures:
+        
+        # add a little feedback to the user 
+        if ((schedule+1) % 10==0):
+            print('#', end='', flush=True)
+
         iters = 1
         
         while iters <= fconf.iterations:
